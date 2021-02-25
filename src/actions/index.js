@@ -28,16 +28,18 @@ export const loginUser = user => dispatch => axios({
   dispatch({ type: SET_USER, payload: { username: user.username, token }});
 }).catch(error => console.log(error));
 
-export const createStack = stack => dispatch => axios({
+export const createStack = data => dispatch => axios({
   method: 'post',
   url: STACKS_API,
   headers: {
-        'authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMH0.WcGWtJO_NpmbUw_ZXZ1rHUVlTSYTM3-Qb7h4oj3unHI',
+        'authorization': data[1],
         'Content-Type': 'application/json'
-  }, //{"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozMH0.WcGWtJO_NpmbUw_ZXZ1rHUVlTSYTM3-Qb7h4oj3unHI"},
+  },
   data: {
-    stack: stack,
+    stack: data[0],
   },
 }).then(response => {   
   console.log(response);
 }).catch(error => console.log(error));
+
+export const getStacks = () => {};

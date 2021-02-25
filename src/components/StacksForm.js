@@ -4,24 +4,28 @@ import { createStack } from '../actions';
 
 const StacksForm = props => {
 
-  const [state, setState] = useState({});  
+  const [stackParams, setStackParams] = useState({});  
+  
+  const { user } = props;  
 
   const onChange = e => {
-    setState({
-      ...state,
+    setStackParams({
+      ...stackParams,
       [e.target.name]: e.target.value,
     });
-  };
+  };  
 
   const handleSubmit = e => {    
-    e.preventDefault();
+    e.preventDefault();    
     
     const stack = {
-      title: state.title,
-      tags: state.tags,      
+      title: stackParams.title,
+      tags: stackParams.tags,      
     };
 
-    props.createStack(stack);
+    const data = [stack, `Bearer ${user.token}`];
+    
+    props.createStack(data);
     
     e.target.reset();
   };
@@ -38,8 +42,12 @@ const StacksForm = props => {
   )
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 const mapDispatchToProps = dispatch => ({
   createStack: stack => dispatch(createStack(stack)),  
 });
 
-export default connect(state => ({}), mapDispatchToProps)(StacksForm);
+export default connect(mapStateToProps, mapDispatchToProps)(StacksForm);
