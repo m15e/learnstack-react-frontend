@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { createUser } from './actions';
-import axios from 'axios';
+import UsersForm from './components/UsersForm';
 
 const App = props => {
 
   const USER_API = 'http://localhost:3000/api/v1/users';
   
-  useEffect(() => {
-    props.createUser();
-  }, []);
+  // useEffect(() => {
+  //   props.createUser();
+  // }, []);
 
   return (
     <div className="App">
       <h1>Sign up</h1>
+      <UsersForm />
     </div>
   );
 }
@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createUser,
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
