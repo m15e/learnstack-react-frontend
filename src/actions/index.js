@@ -32,11 +32,11 @@ export const createStack = data => dispatch => axios({
   method: 'post',
   url: STACKS_API,
   headers: {
-        'authorization': data[1],
+        'authorization': data['auth'],
         'Content-Type': 'application/json'
   },
   data: {
-    stack: data[0],
+    stack: data['stack'],
   },
 }).then(response => {   
   console.log(response);
