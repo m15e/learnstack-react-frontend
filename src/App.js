@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import UsersForm from './components/UsersForm';
+import StacksForm from './components/StacksForm';
 
 const App = props => {
 
@@ -12,9 +13,9 @@ const App = props => {
   // }, []);
 
   return (
-    <div className="App">
-      <h1>Sign up</h1>
+    <div className="App">      
       <UsersForm />
+      <StacksForm />
     </div>
   );
 }
