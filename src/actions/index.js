@@ -42,4 +42,9 @@ export const createStack = data => dispatch => axios({
   console.log(response);
 }).catch(error => console.log(error));
 
-export const getStacks = () => {};
+export const getStacks = () => dispatch => axios({
+  method: 'get',
+  url: STACKS_API,
+}).then(response => {
+  console.log(response);
+}).catch(error => console.log(error));

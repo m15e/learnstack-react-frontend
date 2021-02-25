@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import UsersForm from './components/UsersForm';
 import StacksForm from './components/StacksForm';
+import StacksList from './components/StacksList';
 
 const App = props => {
 
@@ -16,6 +17,7 @@ const App = props => {
     <div className="App">      
       <UsersForm />
       <StacksForm />
+      <StacksList />
     </div>
   );
 }
