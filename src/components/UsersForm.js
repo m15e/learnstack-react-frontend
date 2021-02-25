@@ -1,15 +1,11 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createUser } from '../actions';
+import { createUser, loginUser } from '../actions';
 
 const UsersForm = props => {
 
-  const initState = {
-    username: '',
-    password: '',
-  }
-
-  const [state, setState] = useState(initState);
+  const [state, setState] = useState({});
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const onChange = e => {
     setState({
@@ -18,23 +14,33 @@ const UsersForm = props => {
     });
   };
 
+  const onCheck = e => {
+    setIsSignUp(e.target.checked);    
+  };
+
   const handleSubmit = e => {    
     e.preventDefault();
 
+    console.log(isSignUp);
+    
     const user = {
       username: state.username,
       password: state.password,
     };
 
-    props.createUser(user);
-    setState(initState);    
+    if (isSignUp) {
+      props.createUser(user);
+    } else {
+      props.loginUser(user);
+    }
+    
     e.target.reset();
   };
 
   return (
-    <div>
-      <p>StackForm</p>
+    <div>      
       <form onSubmit={handleSubmit}>
+        <input type="checkbox" name="signup" onChange={onCheck} />
         <input type="text" name="username" placeholder="name" onChange={onChange} />
         <input type="password" name="password" onChange={onChange} />
         <button type="submit">Create User</button>
@@ -43,11 +49,9 @@ const UsersForm = props => {
   )
 };
 
-const mapStateToProps = state => ({
-});
-
 const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user)),
+  loginUser: user => dispatch(loginUser(user)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersForm);
+export default connect(state => ({}), mapDispatchToProps)(UsersForm);
