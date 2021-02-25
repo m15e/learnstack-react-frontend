@@ -28,6 +28,7 @@ const UsersForm = props => {
 
     props.createUser(user);
     setState(initState);    
+    e.target.reset();
   };
 
   return (
