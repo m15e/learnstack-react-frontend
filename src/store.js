@@ -6,7 +6,11 @@ const initialState = {
   user: {
     username: '',
     token: '',
-  },  
+  },
+  stacks: {
+    items: [],
+    item: {},
+  }  
 };
 
 const middleware = [thunk];

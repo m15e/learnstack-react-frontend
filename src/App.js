@@ -22,15 +22,19 @@ const App = props => {
   );
 }
 
-const mapStateToProps = state => ({
-  user: {
-    user_id: null,
-    token: '',
-  },
-});
+// const mapStateToProps = state => ({
+//   user: {
+//     user_id: null,
+//     token: '',
+//   },
+//   stacks: {
+//     items: [],
+//     item: {},
+//   }
+// });
 
-const mapDispatchToProps = {
+// const mapDispatchToProps = {
   
-};
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App; //connect(mapStateToProps, mapDispatchToProps)(App);
