@@ -47,16 +47,20 @@ export const getStacks = () => dispatch => axios({
   url: STACKS_API,
 }).then(response => {
   console.log(response.data);
-  const stacks = response.data;
+  const stacks = response.data; // refactor when code is complete
   dispatch({
     type: GET_STACKS,
     payload: stacks,
   });
 }).catch(error => console.log(error));
 
-export const getStack = id => dispatch => axios({
+export const getStack = data => dispatch => axios({
   method: 'get',
-  url: `${STACKS_API}/${id}`,
+  url: `${STACKS_API}/${data['id']}`,
+  headers: {
+        'authorization': `bearer: ${data['token']}`,
+        'Content-Type': 'application/json'
+  },
 }).then(response => {
   console.log(response.data);
   const stack = response.data;
@@ -65,6 +69,8 @@ export const getStack = id => dispatch => axios({
     payload: stack,
   });
 }).catch(error => console.log(error));
+
+export const createLink = () => {};
 
 
 

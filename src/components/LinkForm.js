@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createStack } from '../actions';
+import { createLink } from '../actions';
 
-const StacksForm = props => {
+const LinkForm = props => {
 
-  const [stackParams, setStackParams] = useState({});  
+  const [linkParams, setLinkParams] = useState({});  
   
-  const { user, createStack } = props;  
+  const { user, createLink } = props;  
 
   const onChange = e => {
-    setStackParams({
-      ...stackParams,
+    setLinkParams({
+      ...linkParams,
       [e.target.name]: e.target.value,
     });
   };  
@@ -18,25 +18,25 @@ const StacksForm = props => {
   const handleSubmit = e => {    
     e.preventDefault();    
     
-    const stack = {
-      title: stackParams.title,
-      tags: stackParams.tags,      
+    const link = {
+      title: linkParams.title,
+      tags: linkParams.tags,      
     };
 
-    const data = { stack: stack, auth: `Bearer ${user.token}` };
+    const data = { link: link, auth: `Bearer ${user.token}` };
     
-    createStack(data);
+    createLink(data);
     
     e.target.reset();
   };
 
   return (
     <>      
-      <h3>Stack form:</h3>
+      <h3>Link form:</h3>
       <form onSubmit={handleSubmit}>        
         <input type="text" name="title" placeholder="title" onChange={onChange} />
         <input type="text" name="tags" onChange={onChange} />
-        <button type="submit" className="button">Create Stack</button>
+        <button type="submit" className="button">Create link</button>
       </form>
     </>
   );
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createStack: stack => dispatch(createStack(stack)),  
+  createlink: link => dispatch(createLink(link)),  
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StacksForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LinkForm);

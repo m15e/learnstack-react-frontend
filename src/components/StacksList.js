@@ -13,7 +13,7 @@ const StacksList = props => {
 
 
   const stackArray = stacks.items.map(stack => (
-    <Stack key={stack.id} title={stack.title} tags={stack.tags} />
+    <Stack key={stack.id} id={stack.id} title={stack.title} tags={stack.tags} />
   ));
 
   return (
