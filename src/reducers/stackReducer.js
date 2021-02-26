@@ -1,4 +1,4 @@
-import { GET_STACKS } from '../actions/types';
+import { GET_STACKS, GET_STACK } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -12,6 +12,11 @@ const stackReducer = (state = initialState, action) => {
         ...state,
         items: action.payload,
       };
+    case GET_STACK:
+      return {
+        ...state,
+        item: action.payload,
+      };    
     default:
       return state;
   }

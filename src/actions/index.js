@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS } from './types';
+import { SET_USER, GET_STACKS, GET_STACK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -51,6 +51,18 @@ export const getStacks = () => dispatch => axios({
   dispatch({
     type: GET_STACKS,
     payload: stacks,
+  });
+}).catch(error => console.log(error));
+
+export const getStack = id => dispatch => axios({
+  method: 'get',
+  url: `${STACKS_API}/${id}`,
+}).then(response => {
+  console.log(response.data);
+  const stack = response.data;
+  dispatch({
+    type: GET_STACK,
+    payload: stack,
   });
 }).catch(error => console.log(error));
 

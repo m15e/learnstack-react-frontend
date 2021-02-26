@@ -38,15 +38,25 @@ const UsersForm = props => {
   };
 
   return (
-    <>      
-      <h3>User form:</h3>
+    <div className="users-form">      
+      <h3 className="title is-3">User form:</h3>
       <form onSubmit={handleSubmit}>
-        <input type="checkbox" name="signup" onChange={onCheck} />
-        <input type="text" name="username" placeholder="name" onChange={onChange} />
-        <input type="password" name="password" onChange={onChange} />
-        <button type="submit">Send</button>
+          <input type="checkbox" name="signup" onChange={onCheck} />
+          <div className="field">
+            <label className="label">Username:</label>
+            <div className="control">
+              <input className="input" type="text" name="username" placeholder="Enter Username" onChange={onChange} />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Password:</label>
+            <div className="control">
+              <input className="input" type="password" name="password" placeholder="Enter Password" onChange={onChange} />              
+            </div>
+          </div>
+        <button className="button" type="submit">Send</button>
       </form>
-    </>
+    </div>
   )
 };
 

@@ -36,10 +36,10 @@ const StacksForm = props => {
       <form onSubmit={handleSubmit}>        
         <input type="text" name="title" placeholder="title" onChange={onChange} />
         <input type="text" name="tags" onChange={onChange} />
-        <button type="submit">Create Stack</button>
+        <button type="submit" className="button">Create Stack</button>
       </form>
     </>
-  )
+  );
 };
 
 const mapStateToProps = state => ({
