@@ -7,6 +7,10 @@ const UsersForm = props => {
 
   const [state, setState] = useState({});
   const [isSignUp, setIsSignUp] = useState(false);
+  
+  const onCheck = e => {
+    setIsSignUp(e.target.checked);    
+  };
 
   const onChange = e => {
     setState({
@@ -14,11 +18,7 @@ const UsersForm = props => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const onCheck = e => {
-    setIsSignUp(e.target.checked);    
-  };
-
+  
   const handleSubmit = e => {    
     e.preventDefault();
 
