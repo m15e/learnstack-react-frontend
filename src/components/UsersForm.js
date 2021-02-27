@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createUser, loginUser } from '../actions';
 
 const UsersForm = props => {
+  const { createUser, loginUser } = props;
 
   const [state, setState] = useState({});
   const [isSignUp, setIsSignUp] = useState(false);
@@ -25,14 +26,13 @@ const UsersForm = props => {
     
     const user = {
       username: state.username,
-      password: state.password,
-      id: state.id,
+      password: state.password,      
     };
 
     if (isSignUp) {
-      props.createUser(user);
+      createUser(user);
     } else {
-      props.loginUser(user);
+      loginUser(user);
     }
     
     e.target.reset();
