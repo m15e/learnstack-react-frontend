@@ -25,8 +25,17 @@ export const loginUser = user => dispatch => axios({
 }).then(response => {   
   const token = response.data.token;    
   console.log(token);
-  dispatch({ type: SET_USER, payload: { username: user.username, token }});
+  const userData = { username: user.username, token };
+  dispatch({ type: SET_USER, payload: userData });
+  localStorage.setItem('user', JSON.stringify(userData)); 
 }).catch(error => console.log(error));
+
+export const setUser = user => dispatch => {
+  console.log('from action');
+  console.log(JSON.parse(user));
+  const userData = JSON.parse(user)
+  dispatch({ type: SET_USER, payload: userData });
+};
 
 export const createStack = data => dispatch => axios({
   method: 'post',
@@ -57,10 +66,10 @@ export const getStacks = () => dispatch => axios({
 export const getStack = data => dispatch => axios({
   method: 'get',
   url: `${STACKS_API}/${data['id']}`,
-  headers: {
-        'authorization': `bearer: ${data['token']}`,
-        'Content-Type': 'application/json'
-  },
+  // headers: {
+  //       'authorization': `bearer: ${data['token']}`,
+  //       'Content-Type': 'application/json'
+  // },
 }).then(response => {
   console.log(response.data);
   const stack = response.data;
