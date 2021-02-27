@@ -6,6 +6,7 @@ const initialState = {
   user: {
     username: '',
     token: '',
+    id: '',
   },
   stacks: {
     items: [],

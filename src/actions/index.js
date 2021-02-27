@@ -12,10 +12,15 @@ export const createUser = user => dispatch => axios({
   data: {
     user: user,
   },
-}).then(response => {    
-  const token = response.data.data;
-  
-  dispatch({ type: SET_USER, payload: { username: user.username, token }});
+}).then(response => {
+  const resposne = response.data.data
+  const token = response.token;
+  const id = response.id;  
+  const userData = { username: user.username, token: token, id: id };
+
+  dispatch({ type: SET_USER, payload: userData });
+  localStorage.setItem('user', userData);
+
 }).catch(error => console.log(error));
 
 export const loginUser = user => dispatch => axios({

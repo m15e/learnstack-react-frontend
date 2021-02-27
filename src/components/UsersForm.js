@@ -26,6 +26,7 @@ const UsersForm = props => {
     const user = {
       username: state.username,
       password: state.password,
+      id: state.id,
     };
 
     if (isSignUp) {
