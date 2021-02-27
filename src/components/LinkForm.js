@@ -9,21 +9,21 @@ const LinkForm = props => {
   
   const { user, stack } = props;  
 
-  // const createLink = data => axios({
-  //   method: 'post',
-  //   url: 'http://localhost:3000/api/v1/links',
-  //   headers: {
-  //         'authorization': data['auth'],
-  //         'Content-Type': 'application/json'
-  //   },
-  //   data: {
-  //     link: JSON.stringify(data['link']),
-  //   },
-  // }).then(response => {
-  //   console.log(response.data);
-  // }).catch(error => console.log(error));
+  const createLink = data => axios({
+    method: 'post',
+    url: 'http://localhost:3000/api/v1/links',
+    headers: {
+          'authorization': data['auth'],
+          'Content-Type': 'application/json'
+    },
+    data: {
+      link: data['link'],
+    },
+  }).then(response => {
+    console.log(response.data);
+  }).catch(error => console.log(error));
 
-  const createLink = data => console.log(data);
+  //const createLink = data => console.log(data);
 
   const onChange = e => {
     setLinkParams({
@@ -38,9 +38,9 @@ const LinkForm = props => {
     console.log(stack);
 
     const link = {
-      title: linkParams.title,
-      tags: linkParams.tags,
+      title: linkParams.title,      
       url: linkParams.url,
+      tags: linkParams.tags,
       medium: linkParams.medium,
       stack_id: stack.id,
     };
