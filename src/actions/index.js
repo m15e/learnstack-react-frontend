@@ -19,7 +19,7 @@ export const createUser = user => dispatch => axios({
   const userData = { username: user.username, token: token, id: id };
 
   dispatch({ type: SET_USER, payload: userData });
-  localStorage.setItem('user', userData);
+  localStorage.setItem('user', JSON.stringify(userData));
 
 }).catch(error => console.log(error));
 
@@ -31,8 +31,7 @@ export const loginUser = user => dispatch => axios({
   const data = response.data;
   const token = data.token;
   const id = data.id;    
-  const userData = { username: user.username, token: token, id: id, };
-  console.log(userData);
+  const userData = { username: user.username, token: token, id: id, };  
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData)); 
 }).catch(error => console.log(error));
