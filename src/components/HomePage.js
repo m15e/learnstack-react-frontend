@@ -16,10 +16,10 @@ const HomePage = props => {
     
 
     if (newUser) {
-      console.log(userCheckBox);
+      userCheckBox.checked = true;
       setActiveModal(true);      
     } else {
-      console.log(userCheckBox);
+      userCheckBox.checked = false;
       setActiveModal(true);
     };
     
