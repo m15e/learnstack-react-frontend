@@ -22,7 +22,7 @@ const StackPage = props => {
 
   return (
     <div className='stack-page'>
-      <Link to={`/`}>Back</Link>
+      <Link to={'/'}>Back</Link>
       <h4>Stack page</h4>
       <LinkForm />
     </div>

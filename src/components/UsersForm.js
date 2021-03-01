@@ -42,7 +42,7 @@ const UsersForm = props => {
     <div className="users-form">      
       <h3 className="title is-3">User form:</h3>
       <form onSubmit={handleSubmit}>
-          <input type="checkbox" name="signup" onChange={onCheck} />
+          <input type="checkbox" id="newUser" name="signup" onChange={onCheck} />
           <div className="field">
             <label className="label">Username:</label>
             <div className="control">

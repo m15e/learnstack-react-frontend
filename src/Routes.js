@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import App from './App';
+import HomePage from './components/HomePage';
 import StackPage from './components/StackPage';
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" component={HomePage} />
       <Route path="/stack/:stackId" component={StackPage} />     
     </Switch>
   </BrowserRouter>
