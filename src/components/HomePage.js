@@ -7,7 +7,9 @@ import UsersForm from './UsersForm';
 const HomePage = props => {
   const userModal = document.querySelector('#userModal');
 
-  const toggleModal = () => userModal.classList.toggle('is-active');
+  const [activeModal, setActiveModal] = useState(false);
+
+  const closeModal = () => setActiveModal(false);
 
   const setModal = newUser => {
     const userCheckBox = document.querySelector('#newUser');
@@ -15,10 +17,10 @@ const HomePage = props => {
 
     if (newUser) {
       console.log(userCheckBox);
-      userModal.classList.toggle('is-active');
+      setActiveModal(true);      
     } else {
       console.log(userCheckBox);
-      userModal.classList.toggle('is-active');
+      setActiveModal(true);
     };
     
   };
@@ -69,12 +71,12 @@ const HomePage = props => {
         </div>
       </div>
     </section>
-    <div class="modal" id="userModal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
+    <div className={`modal ${activeModal ? "is-active" : ""}`} id="userModal">
+      <div className="modal-background"></div>
+      <div className="modal-content">
         <UsersForm />
       </div>
-      <button class="modal-close is-large" aria-label="close" onClick={toggleModal}></button>
+      <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
     </div>
   </>
   );
