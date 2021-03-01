@@ -6,21 +6,26 @@ import UsersForm from './UsersForm';
 
 const HomePage = props => {
   const userModal = document.querySelector('#userModal');
-
+  const setType = document.querySelectorAll('.set-form-type');
   const [activeModal, setActiveModal] = useState(false);
-
   const closeModal = () => setActiveModal(false);
+
+  const changeModalText = text => {
+    [...setType].map(tag => tag.innerHTML = text );
+  };
 
   const setModal = newUser => {
     const userCheckBox = document.querySelector('#newUser');
     
 
     if (newUser) {
-      userCheckBox.checked = true;
+      userCheckBox.checked = true;      
       setActiveModal(true);      
+      changeModalText('Sign Up');
     } else {
       userCheckBox.checked = false;
       setActiveModal(true);
+      changeModalText('Login');
     };
     
   };

@@ -1,7 +1,27 @@
+$orange: #ff5e21;
+
+body {
+  font-family: "Noto Sans JP", sans-serif; // 300 light, 400 regular, 500 medium
+}
+
 .hero-head {
   padding-top: 3rem;
 }
 
 .container {
   max-width: 1024px;
+}
+
+// #newUser {
+//   display: none;
+// }
+
+.form-type {
+  color: #000;
+}
+
+.orange-white {
+  background-color: $orange;
+  color: #fff;
+  border-color: $orange;
 }

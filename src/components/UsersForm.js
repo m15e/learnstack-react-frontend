@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createUser, loginUser } from '../actions';
 
@@ -6,11 +6,7 @@ const UsersForm = props => {
   const { createUser, loginUser } = props;
 
   const [state, setState] = useState({});
-  const [isSignUp, setIsSignUp] = useState(false);
-  
-  const onCheck = e => {
-    setIsSignUp(e.target.checked);    
-  };
+  const newUser = document.querySelector('#newUser');//.value;  
 
   const onChange = e => {
     setState({
@@ -22,14 +18,14 @@ const UsersForm = props => {
   const handleSubmit = e => {    
     e.preventDefault();
 
-    console.log(isSignUp);
+    console.log(newUser.checked);
     
     const user = {
       username: state.username,
       password: state.password,      
     };
 
-    if (isSignUp) {
+    if (newUser.checked) {      
       createUser(user);
     } else {
       loginUser(user);
@@ -40,22 +36,21 @@ const UsersForm = props => {
 
   return (
     <div className="users-form">      
-      <h3 className="title is-3">User form:</h3>
+      <p className="form-type set-form-type">Login</p>
+      <p className="form-subtitle">Welcome to LearnStack</p>
       <form onSubmit={handleSubmit}>
-          <input type="checkbox" id="newUser" name="signup" onChange={onCheck} />
-          <div className="field">
-            <label className="label">Username:</label>
+          <input type="checkbox" id="newUser" name="signup" />
+          <div className="field">            
             <div className="control">
-              <input className="input" type="text" name="username" placeholder="Enter Username" onChange={onChange} />
+              <input className="input is-rounded" type="text" name="username" placeholder="Enter Username" onChange={onChange} />
             </div>
           </div>
-          <div className="field">
-            <label className="label">Password:</label>
+          <div className="field">            
             <div className="control">
-              <input className="input" type="password" name="password" placeholder="Enter Password" onChange={onChange} />              
+              <input className="input is-rounded" type="password" name="password" placeholder="Enter Password" onChange={onChange} />              
             </div>
           </div>
-        <button className="button" type="submit">Send</button>
+        <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
       </form>
     </div>
   )

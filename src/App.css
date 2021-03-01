@@ -1,13 +1,18 @@
+body {
+  font-family: "Noto Sans JP", sans-serif; }
+
 .hero-head {
-  padding-top: 3rem;
-}
+  padding-top: 3rem; }
 
 .container {
-  max-width: 1152px;
-}
+  max-width: 1024px; }
 
-#newUser {
-  display: none;
-}
+.form-type {
+  color: #000; }
+
+.orange-white {
+  background-color: #ff5e21;
+  color: #fff;
+  border-color: #ff5e21; }
 
 /*# sourceMappingURL=App.css.map */
