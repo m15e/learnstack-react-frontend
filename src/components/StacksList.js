@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getStacks } from '../actions';
 import Stack from './Stack';
+import Navigation from './Navigation';
 
 const StacksList = props => {  
   const { stacks, getStacks } = props;
@@ -18,7 +19,8 @@ const StacksList = props => {
 
   return (
     <>            
-      <h3 className="title is-4">Learning collections</h3>    
+      <Navigation />
+      <h3 className="title is-4">What would you like to learn?</h3>    
       <div className="stack-container">{stackArray}</div>
     </>
   );

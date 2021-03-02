@@ -7,8 +7,14 @@ body {
   font-family: "Noto Sans JP", sans-serif; // 300 light, 400 regular, 500 medium
 }
 
-.hero-head {
-  padding-top: 3rem;
+nav {
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.button:hover {
+  color: #fff;
+  opacity: 0.8;
 }
 
 .container {
@@ -133,11 +139,6 @@ body {
     margin-left: 15px;
     font-size: 0.9rem;
     line-height: 1;
-  }
-
-  .stack-link:hover {
-    color: #fff;
-    opacity: 0.8;
   }
 
   .columns {
