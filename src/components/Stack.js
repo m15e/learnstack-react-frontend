@@ -9,7 +9,7 @@ const Stack = props => {
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>));
 
   return (
-    <div className='stack tile is-child box'>
+    <div className='stack tile box'>
       <div className="stack-bg">
         
       </div>

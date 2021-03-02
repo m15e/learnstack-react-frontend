@@ -71,14 +71,14 @@ nav {
 .stack-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-bottom: 150px; }
 
 .box {
   padding: 0 0 1.25rem 0; }
 
 .stack {
-  margin-right: 12px;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0 !important;
   flex: none;
   width: 30%;
   display: block !important; }
@@ -115,5 +115,27 @@ nav {
     margin-right: 5px;
     background-color: #00b8d9;
     color: #fff; }
+
+.stack-form nav {
+  background-color: rgba(255, 255, 255, 0.9); }
+.stack-form .title {
+  margin-top: 3px;
+  margin-left: 0.6rem; }
+.stack-form form {
+  width: 50vw; }
+.stack-form input,
+.stack-form button {
+  margin-left: 15px; }
+
+.stack-page .back-to-stacks {
+  font-size: 1.75rem;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 31;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.7); }
+.stack-page .back-to-stacks:hover {
+  opacity: 0.8; }
 
 /*# sourceMappingURL=App.css.map */

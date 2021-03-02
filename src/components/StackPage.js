@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { getStack } from '../actions';
 import LinkForm from './LinkForm';
 import { Link } from 'react-router-dom';
+import Navigation from './Navigation';
+import { GoChevronLeft } from 'react-icons/go';
 
 const StackPage = props => {
   const { stack, getStack, user } = props;
   
   const stackId = window.location.href.split('/stack/').splice(1).toString();
-  const data = { id: stackId, token: user.token };
+  const data = { id: stackId };
 
   useEffect(() => {
     getStack(data);    
@@ -16,9 +18,12 @@ const StackPage = props => {
 
   return (
     <div className='stack-page'>
-      <Link to={'/'}>Back</Link>
-      <h4>Stack page</h4>
-      <LinkForm />
+      <Link to={'/stacks'} className='back-to-stacks'><GoChevronLeft /></Link>
+      <Navigation />
+      <div className="container is-max-desktop">        
+        <h3 className="title">{ stack.title }</h3>
+        {user.id == stack.user_id && <LinkForm />}
+      </div>
     </div>
   );
 };

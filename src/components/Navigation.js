@@ -39,8 +39,6 @@ const Navigation = props => {
   useEffect(() => {        
     if (loggedInUser) {      
       setUser(loggedInUser);    
-    } else {
-      console.log('no user');   
     };
   }, []);
 

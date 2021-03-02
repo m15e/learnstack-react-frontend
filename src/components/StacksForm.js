@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStack } from '../actions';
+import { GoBeaker } from 'react-icons/go';
 
 const StacksForm = props => {
 
@@ -32,14 +33,24 @@ const StacksForm = props => {
   };
 
   return (
-    <>      
-      <h3>Stack form:</h3>
-      <form onSubmit={handleSubmit}>        
-        <input type="text" name="title" placeholder="title" onChange={onChange} />
-        <input type="text" name="tags" onChange={onChange} />
-        <button type="submit" className="button">Create Stack</button>
-      </form>
-    </>
+    <div className='container is-fluid stack-form'>       
+      <nav className="navbar is-fixed-bottom" role="navigation" aria-label="main navigation">
+        <div className="container is-max-desktop">
+          <div className="navbar-brand">            
+            <h4 className='title is-5'><GoBeaker /> Create a Stack</h4>
+          </div>
+          <div className="navbar-menu">
+            <div className="navbar-end">
+              <form onSubmit={handleSubmit} className='is-flex'>        
+                <input type="text" className="input is-rounded" name="title" placeholder="Add title" onChange={onChange} />
+                <input type="text" className="input is-rounded" name="tags" placeholder="Add tags separated by spaces" onChange={onChange} />
+                <button type="submit" className="button is-rounded orange-white">Create Stack</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 

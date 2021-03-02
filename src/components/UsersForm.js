@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createUser, loginUser } from '../actions';
 
 const UsersForm = props => {
   const { createUser, loginUser } = props;
 
-  const [state, setState] = useState({});
-  const newUser = document.querySelector('#newUser');//.value;  
+  const [form, setForm] = useState({});
+  const newUser = document.querySelector('#newUser');
 
   const onChange = e => {
-    setState({
-      ...state,
+    setForm({
+      ...form,
       [e.target.name]: e.target.value,
     });
   };
   
   const handleSubmit = e => {    
-    e.preventDefault();
-
-    console.log(newUser.checked);
+    e.preventDefault();    
     
     const user = {
-      username: state.username,
-      password: state.password,      
+      username: form.username,
+      password: form.password,      
     };
 
     if (newUser.checked) {      
@@ -30,8 +28,8 @@ const UsersForm = props => {
     } else {
       loginUser(user);
     }
-    
-    e.target.reset();
+        
+    e.target.reset();    
   };
 
   return (

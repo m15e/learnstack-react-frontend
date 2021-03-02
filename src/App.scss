@@ -101,6 +101,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 150px;
 }
 
 .box {
@@ -108,8 +109,7 @@ nav {
 }
 
 .stack {
-  margin-right: 12px;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0 !important;
   flex: none;
   width: 30%;
   display: block !important;
@@ -166,5 +166,40 @@ nav {
     margin-right: 5px;
     background-color: $light-blue;
     color: #fff;
+  }
+}
+
+.stack-form {
+  nav {
+    background-color: rgba($color: #fff, $alpha: 0.9);
+  }
+
+  .title {
+    margin-top: 3px;
+    margin-left: 0.6rem;
+  }
+
+  form {
+    width: 50vw;
+  }
+
+  input,
+  button {
+    margin-left: 15px;
+  }
+}
+
+.stack-page {
+  .back-to-stacks {
+    font-size: 1.75rem;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 31;
+    width: 100%;
+    color: rgba($color: #000000, $alpha: 0.7);
+  }
+  .back-to-stacks:hover {
+    opacity: 0.8;
   }
 }
