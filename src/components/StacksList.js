@@ -17,9 +17,8 @@ const StacksList = props => {
   ));
 
   return (
-    <>      
-      {/* <button onClick={handleClick}>Stack Call</button> */}
-      <h3>Stack List</h3>    
+    <>            
+      <h3 className="title is-4">Learning collections</h3>    
       <div className="stack-container">{stackArray}</div>
     </>
   );

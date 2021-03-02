@@ -7,6 +7,38 @@ body {
 .container {
   max-width: 1024px; }
 
+.users-form {
+  text-align: center; }
+  .users-form #newUser {
+    display: none; }
+  .users-form .form-type {
+    font-size: 1.6rem;
+    font-weight: 300; }
+  .users-form .form-subtitle {
+    color: #000;
+    margin: 1rem auto 3rem; }
+  .users-form input[type="text"],
+  .users-form input[type="password"] {
+    background-color: transparent;
+    color: #000; }
+  .users-form input[type="text"]::placeholder,
+  .users-form input[type="password"]::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+    /* Firefox */
+    padding-left: 0.5rem; }
+  .users-form input[type="text"]:-ms-input-placeholder,
+  .users-form input[type="password"]::placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(0, 0, 0, 0.6);
+    padding-left: 0.5rem; }
+  .users-form input[type="text"]::-ms-input-placeholder,
+  .users-form input[type="password"]::placeholder {
+    /* Microsoft Edge */
+    color: rgba(0, 0, 0, 0.6);
+    padding-left: 0.5rem; }
+
 .form-type {
   color: #000; }
 
@@ -14,5 +46,72 @@ body {
   background-color: #ff5e21;
   color: #fff;
   border-color: #ff5e21; }
+
+.purple-white {
+  background-color: #713aca;
+  color: #fff;
+  border-color: #713aca; }
+
+.modal-background {
+  background-color: rgba(255, 255, 255, 0.95); }
+
+.modal-close::after,
+.modal-close::before {
+  background-color: #000; }
+
+.modal-close:hover {
+  background-color: #fff;
+  border: 1px solid #000; }
+
+.stack-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.box {
+  padding: 0 0 1.25rem 0; }
+
+.stack {
+  margin-right: 12px;
+  margin-bottom: 12px;
+  flex: none;
+  width: 30%;
+  display: block !important; }
+  .stack .stack-bg {
+    background: url("https://source.unsplash.com/1024x768/?learning") no-repeat center center;
+    height: 200px;
+    background-size: cover;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px; }
+  .stack h3 {
+    padding-top: 1.25rem;
+    padding-left: 1.25rem; }
+  .stack p {
+    padding-top: 0.6rem;
+    padding-left: 1.25rem;
+    padding-bottom: 0.6rem; }
+  .stack .stack-link {
+    padding-left: 1.25rem;
+    margin-left: 15px;
+    font-size: 0.9rem;
+    line-height: 1; }
+  .stack .stack-link:hover {
+    color: #fff;
+    opacity: 0.8; }
+  .stack .columns .column:first-of-type {
+    padding-left: 30px; }
+  .stack .columns .column {
+    text-align: center;
+    margin: 0 auto; }
+    .stack .columns .column span {
+      font-size: 0.9rem;
+      display: flex;
+      color: rgba(0, 0, 0, 0.6); }
+  .stack .columns .column:last-of-type {
+    padding-right: 30px; }
+  .stack .stack-tag {
+    margin-right: 5px;
+    background-color: #00b8d9;
+    color: #fff; }
 
 /*# sourceMappingURL=App.css.map */

@@ -36,7 +36,7 @@ const UsersForm = props => {
 
   return (
     <div className="users-form">      
-      <p className="form-type set-form-type">Login</p>
+      <p className="form-type set-form-type">Sign in</p>
       <p className="form-subtitle">Welcome to LearnStack</p>
       <form onSubmit={handleSubmit}>
           <input type="checkbox" id="newUser" name="signup" />
@@ -50,7 +50,7 @@ const UsersForm = props => {
               <input className="input is-rounded" type="password" name="password" placeholder="Enter Password" onChange={onChange} />              
             </div>
           </div>
-        <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
+        <button className="button is-rounded orange-white set-form-type" type="submit">Sign in</button>
       </form>
     </div>
   )

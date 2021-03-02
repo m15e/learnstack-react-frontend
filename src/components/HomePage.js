@@ -21,11 +21,11 @@ const HomePage = props => {
     if (newUser) {
       userCheckBox.checked = true;      
       setActiveModal(true);      
-      changeModalText('Sign Up');
+      changeModalText('Sign up');
     } else {
       userCheckBox.checked = false;
       setActiveModal(true);
-      changeModalText('Login');
+      changeModalText('Sign in');
     };
     
   };
@@ -70,9 +70,9 @@ const HomePage = props => {
             Community powered learning
           </p>
           <p className="subtitle">
-            Discover and share the best videos, articles, websites for learning things online.
+            Discover and share the best collections of videos, articles, websites for learning things online.
           </p>
-          <button className="button is-rounded">View Stacks</button>
+          <Link to={'/stacks'} className="button is-rounded">View Collections</Link>
         </div>
       </div>
     </section>
