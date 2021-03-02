@@ -98,7 +98,9 @@ export const createLink = data => axios({
   console.log(response.data);
 }).catch(error => console.log(error));
 
-
+export const logoutUser = dispatch => ({
+  type: SET_USER, payload: null,
+});
 
 
 

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { setUser, logoutUser } from '../actions';
+import { connect } from 'react-redux';
 import UsersForm from './UsersForm';
 
-const Navigation = () => {
-  const userModal = document.querySelector('#userModal');
+const Navigation = props => {  
+  const { user, setUser, logoutUser } = props;
+  const loggedInUser = localStorage.getItem('user');
   const setType = document.querySelectorAll('.set-form-type');
-  const [activeModal, setActiveModal] = useState(false);
+  const [activeModal, setActiveModal] = useState(false);  
   const closeModal = () => setActiveModal(false);
+  let buttons;
 
   const changeModalText = text => {
     [...setType].map(tag => tag.innerHTML = text );
@@ -27,6 +31,19 @@ const Navigation = () => {
     
   };
 
+  const logOut = () => {
+    logoutUser();
+    localStorage.clear();
+  };
+
+  useEffect(() => {        
+    if (loggedInUser) {      
+      setUser(loggedInUser);    
+    } else {
+      console.log('no user');   
+    };
+  }, []);
+
   return (
     <>
       <nav className="navbar">
@@ -44,16 +61,27 @@ const Navigation = () => {
           </div>
           <div id="navbarMenu" className="navbar-menu">
             <div className="navbar-end">              
-              <span className="navbar-item">
-                <button className="button is-rounded" onClick={() => setModal(false)}>                 
-                  <span>Login</span>
-                </button>
-              </span>
-              <span className="navbar-item">
-                <button className="button is-rounded" onClick={() => setModal(true)}>            
-                  <span>Sign Up</span>
-                </button>
-              </span>
+              {!loggedInUser &&
+                <>
+                <span className="navbar-item">
+                  <button className="button is-rounded" onClick={() => setModal(false)}>                 
+                    <span>Login</span>
+                  </button>
+                </span>
+                <span className="navbar-item">
+                  <button className="button is-rounded" onClick={() => setModal(true)}>            
+                    <span>Sign Up</span>
+                  </button>
+                </span>
+                </>
+              }
+              {loggedInUser &&                
+                <span className="navbar-item">
+                  <button className="button is-rounded" onClick={logOut}>                 
+                    <span>Logout</span>
+                  </button>
+                </span>               
+              }
             </div>
           </div>
         </div>
@@ -69,4 +97,14 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+
+const mapStateToProps = state => ({
+  user: state.user,  
+});
+
+const mapDispatchToProps = dispatch => ({
+  setUser: user => dispatch(setUser(user)),  
+  logoutUser: () => dispatch(logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -1,23 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getStack, setUser } from '../actions';
+import { getStack } from '../actions';
 import LinkForm from './LinkForm';
 import { Link } from 'react-router-dom';
 
 const StackPage = props => {
-  const { stack, getStack, user, setUser } = props;
+  const { stack, getStack, user } = props;
   
   const stackId = window.location.href.split('/stack/').splice(1).toString();
   const data = { id: stackId, token: user.token };
 
   useEffect(() => {
     getStack(data);    
-    const loggedInUser = localStorage.getItem('user');        
-    if (loggedInUser) {      
-      setUser(loggedInUser);
-    } else {
-      console.log('no user');
-    };
   }, []);
 
   return (
@@ -34,8 +28,7 @@ const mapStateToProps = state => ({
   stack: state.stacks.item,
 });
 
-const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
+const mapDispatchToProps = dispatch => ({  
   getStack: data => dispatch(getStack(data)),  
 });
 

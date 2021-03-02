@@ -1,11 +1,13 @@
 import React from 'react';
 import StacksList from './StacksList';
+import Navigation from './Navigation';
 
 const StackIndex = () => {
   return (
-    <div className='container is-max-desktop'>
-      <StacksList />
-    </div>
+    <>
+      <Navigation />      
+      <StacksList />      
+    </>
   )
 }
 
