@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { GoZap, GoFlame, GoChevronUp, GoChevronDown } from 'react-icons/go';
 
 const Stack = props => {
-  const { title, tags, id, links } = props;
+  const { title, tags, id, links, handleDeleteStack } = props;
 
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>));
 
   return (
     <div className='stack tile box'>
+      <button onClick={() => handleDeleteStack(id)}>Delete Stack</button>
       <div className="stack-bg">
         
       </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, DELETE_STACK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -52,26 +52,37 @@ export const createStack = data => dispatch => axios({
   data: {
     stack: data['stack'],
   },
-}).then(response => {   
-  console.log(response.data);
+}).then(response => {     
   dispatch({ type: CREATE_STACK, payload: response.data });
+}).catch(error => console.log(error));
+
+export const deleteStack = data => dispatch => axios({
+  method: 'delete',
+  url: `${STACKS_API}/${data['id']}`,
+  headers: {
+        'authorization': data['auth'],
+        'Content-Type': 'application/json'
+  },
+}).then(() => {
+  dispatch({
+    type: DELETE_STACK,
+    payload: data['id'],
+  });
 }).catch(error => console.log(error));
 
 export const getStacks = () => dispatch => axios({
   method: 'get',
   url: STACKS_API,
-}).then(response => {
-  console.log(response.data);
-  const stacks = response.data; // refactor when code is complete
+}).then(response => {    
   dispatch({
     type: GET_STACKS,
-    payload: stacks,
+    payload: response.data,
   });
 }).catch(error => console.log(error));
 
 export const getStack = data => dispatch => axios({
   method: 'get',
-  url: `${STACKS_API}/${data['id']}`,
+  url: `${STACKS_API}/${data}`,
   // headers: {
   //       'authorization': `bearer: ${data['token']}`,
   //       'Content-Type': 'application/json'

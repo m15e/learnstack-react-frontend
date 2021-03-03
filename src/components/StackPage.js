@@ -10,11 +10,11 @@ const StackPage = props => {
   const { stack, getStack, user } = props;
   
   const stackId = window.location.href.split('/stack/').splice(1).toString();
-  const data = { id: stackId };
+  const data = stackId;
   const isStackOwner = user ? user.id == stack.user_id : false;  
   
   useEffect(() => {
-    getStack(data);   
+    getStack(stackId);   
   }, [getStack]);
 
   const linkArray = stack.links ? stack.links.map(link => (
@@ -24,10 +24,9 @@ const StackPage = props => {
       <a href={link.url} target='_blank' className='button is-rounded lb-white link-button'>View Resource</a>      
     </div>
   )) : <p className='no-links'>No links in this stack yet</p>;
-
   
   return (
-    <div className='stack-page'>
+    <div className='stack-page'>      
       <Link to={'/stacks'} className='back-to-stacks'><GoChevronLeft /></Link>
       <Navigation />
       <div className="container is-max-desktop">        
