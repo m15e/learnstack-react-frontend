@@ -14,7 +14,6 @@ const StacksList = props => {
 
   const handleDeleteStack = id => {
     const data = { id, auth: `Bearer ${user.token}` };
-
     deleteStack(data);
   };
 

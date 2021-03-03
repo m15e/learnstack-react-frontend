@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, DELETE_STACK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, DELETE_STACK, DELETE_LINK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -42,6 +42,10 @@ export const setUser = user => dispatch => {
   dispatch({ type: SET_USER, payload: userData });
 };
 
+export const logoutUser = dispatch => ({
+  type: SET_USER, payload: null,
+});
+
 export const createStack = data => dispatch => axios({
   method: 'post',
   url: STACKS_API,
@@ -83,12 +87,7 @@ export const getStacks = () => dispatch => axios({
 export const getStack = data => dispatch => axios({
   method: 'get',
   url: `${STACKS_API}/${data}`,
-  // headers: {
-  //       'authorization': `bearer: ${data['token']}`,
-  //       'Content-Type': 'application/json'
-  // },
-}).then(response => {
-  console.log(response.data);
+}).then(response => {  
   const stack = response.data;
   dispatch({
     type: GET_STACK,
@@ -114,20 +113,17 @@ export const createLink = data => dispatch => axios({
     });
   }).catch(error => console.log(error)); 
 
-export const logoutUser = dispatch => ({
-  type: SET_USER, payload: null,
-});
+export const deleteLink = data => dispatch => axios({
+  method: 'delete',
+  url: `${LINKS_API}/${data['id']}`,
+  headers: {
+        'authorization': data['auth'],
+        'Content-Type': 'application/json'
+  },
+}).then(() => {
+  dispatch({
+    type: DELETE_LINK,
+    payload: data['id'],
+  });
+}).catch(error => console.log(error));
 
-
-
-
-
-
-// export const getStacks = () => dispatch => axios({
-//   method: 'get',
-//   url: STACKS_API,
-// }).then(response => {
-//   console.log('stack', response.data);
-//   const stacks = response.data;
-//   dispatch({ type: GET_STACKS, payload: stacks });
-// }).catch(error => console.log(error));
