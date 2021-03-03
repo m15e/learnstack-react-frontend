@@ -6,11 +6,10 @@ import UsersForm from './UsersForm';
 
 const Navigation = props => {  
   const { user, setUser, logoutUser } = props;
-  const loggedInUser = localStorage.getItem('user');
-  const setType = document.querySelectorAll('.set-form-type');
-  const [activeModal, setActiveModal] = useState(false);  
-  const closeModal = () => setActiveModal(false);
-  let buttons;
+  let loggedInUser = localStorage.getItem('user');
+  const setType = document.querySelectorAll('.set-form-type');  
+  const [activeModal, setActiveModal] = useState(false);
+  const closeModal = () => setActiveModal(false);    
 
   const changeModalText = text => {
     [...setType].map(tag => tag.innerHTML = text );
@@ -34,13 +33,18 @@ const Navigation = props => {
   const logOut = () => {
     logoutUser();
     localStorage.clear();
+  };  
+
+  const handleUser = () => {
+    if (loggedInUser) {      
+      setUser(loggedInUser);      
+    };
+    setActiveModal(false);    
   };
 
   useEffect(() => {        
-    if (loggedInUser) {      
-      setUser(loggedInUser);    
-    };
-  }, []);
+    handleUser();
+  }, [setUser]);
 
   return (
     <>
@@ -58,7 +62,7 @@ const Navigation = props => {
             </span>
           </div>
           <div id="navbarMenu" className="navbar-menu">
-            <div className="navbar-end">              
+            <div className="navbar-end user-buttons">              
               {!loggedInUser &&
                 <>
                 <span className="navbar-item">
@@ -87,7 +91,7 @@ const Navigation = props => {
       <div className={`modal ${activeModal ? "is-active" : ""}`} id="userModal">
         <div className="modal-background"></div>
         <div className="modal-content">
-          <UsersForm />
+          <UsersForm handleUser={handleUser} />
         </div>
         <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
       </div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createUser, loginUser } from '../actions';
 
 const UsersForm = props => {
-  const { createUser, loginUser } = props;
+  const { createUser, loginUser, handleUser } = props;
 
   const [form, setForm] = useState({});
   const newUser = document.querySelector('#newUser');
@@ -29,6 +29,7 @@ const UsersForm = props => {
       loginUser(user);
     }
         
+    handleUser();
     e.target.reset();    
   };
 

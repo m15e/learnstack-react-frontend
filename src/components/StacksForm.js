@@ -22,7 +22,7 @@ const StacksForm = props => {
     const stack = {
       title: stackParams.title,
       tags: stackParams.tags,
-      user_id: user.id,    
+      user_id: user.id,          
     };
 
     const data = { stack: stack, auth: `Bearer ${user.token}` };

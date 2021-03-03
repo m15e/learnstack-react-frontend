@@ -5,7 +5,8 @@ nav {
   padding-top: 2rem;
   padding-bottom: 1.5rem; }
 
-.button:hover {
+.button:hover,
+.button:focus {
   color: #fff;
   opacity: 0.8; }
 
@@ -56,6 +57,16 @@ nav {
   background-color: #713aca;
   color: #fff;
   border-color: #713aca; }
+
+.lb-white {
+  background-color: #00b8d9;
+  color: #fff;
+  border-color: #00b8d9; }
+
+.lg-white {
+  background-color: #00d792;
+  color: #fff;
+  border-color: #00d792; }
 
 .modal-background {
   background-color: rgba(255, 255, 255, 0.95); }
@@ -113,7 +124,7 @@ nav {
     padding-right: 30px; }
   .stack .stack-tag {
     margin-right: 5px;
-    background-color: #00b8d9;
+    background-color: #00d792;
     color: #fff; }
 
 .stack-form nav {
@@ -137,5 +148,17 @@ nav {
   color: rgba(0, 0, 0, 0.7); }
 .stack-page .back-to-stacks:hover {
   opacity: 0.8; }
+.stack-page .stack-tag {
+  margin-right: 5px;
+  background-color: #00d792;
+  color: #fff; }
+
+.link {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  width: 100%;
+  justify-content: space-between;
+  padding: 15px 0 10px 0;
+  align-items: center; }
 
 /*# sourceMappingURL=App.css.map */

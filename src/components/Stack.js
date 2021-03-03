@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { GoZap, GoFlame, GoChevronUp, GoChevronDown } from 'react-icons/go';
 
 const Stack = props => {
-  const { title, tags, id } = props;
+  const { title, tags, id, links } = props;
 
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>));
 
@@ -27,12 +27,11 @@ const Stack = props => {
           </div> 
           <div className="column">
             <GoZap />
-            <span>8 Resources</span>
+            <span>{links} Resources</span>
           </div>
         </div>
-        
                  
-        <Link to={`/stack/${id}`} className='button is-rounded purple-white is-small stack-link'>View Collection</Link>
+        <Link to={`/stack/${id}`} className='button is-rounded lb-white is-small stack-link'>View Collection</Link>
       </div>
     </div>
   );

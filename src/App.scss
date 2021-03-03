@@ -12,7 +12,8 @@ nav {
   padding-bottom: 1.5rem;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   color: #fff;
   opacity: 0.8;
 }
@@ -81,6 +82,18 @@ nav {
   background-color: $purple;
   color: #fff;
   border-color: $purple;
+}
+
+.lb-white {
+  background-color: $light-blue;
+  color: #fff;
+  border-color: $light-blue;
+}
+
+.lg-white {
+  background-color: $light-green;
+  color: #fff;
+  border-color: $light-green;
 }
 
 .modal-background {
@@ -164,7 +177,7 @@ nav {
 
   .stack-tag {
     margin-right: 5px;
-    background-color: $light-blue;
+    background-color: $light-green;
     color: #fff;
   }
 }
@@ -202,4 +215,18 @@ nav {
   .back-to-stacks:hover {
     opacity: 0.8;
   }
+  .stack-tag {
+    margin-right: 5px;
+    background-color: $light-green;
+    color: #fff;
+  }
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  width: 100%;
+  justify-content: space-between;
+  padding: 15px 0 10px 0;
+  align-items: center;
 }

@@ -9,13 +9,12 @@ const StacksList = props => {
   const loggedInUser = localStorage.getItem('user');
 
   useEffect(() => {
-    getStacks();
-    console.log(stacks);
+    getStacks();    
   }, []);
 
 
   const stackArray = stacks.items.map(stack => (
-    <Stack key={stack.id} id={stack.id} title={stack.title} tags={stack.tags} />
+    <Stack key={stack.id} id={stack.id} title={stack.title} tags={stack.tags} links={stack.links.length} />
   ));
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -53,7 +53,8 @@ export const createStack = data => dispatch => axios({
     stack: data['stack'],
   },
 }).then(response => {   
-  console.log(response);
+  console.log(response.data);
+  dispatch({ type: CREATE_STACK, payload: response.data });
 }).catch(error => console.log(error));
 
 export const getStacks = () => dispatch => axios({
@@ -84,19 +85,23 @@ export const getStack = data => dispatch => axios({
   });
 }).catch(error => console.log(error));
 
-export const createLink = data => axios({
-  method: 'post',
-  url: LINKS_API,
-  headers: {
-        'authorization': data['auth'],
-        'Content-Type': 'application/json'
-  },
-  data: {
-    link: data['link'],
-  },
-}).then(response => {
-  console.log(response.data);
-}).catch(error => console.log(error));
+export const createLink = data => dispatch => axios({
+    method: 'post',
+    url: 'http://localhost:3000/api/v1/links',
+    headers: {
+          'authorization': data['auth'],
+          'Content-Type': 'application/json'
+    },
+    data: {
+      link: data['link'],
+    },
+  }).then(response => {
+    console.log(response.data);
+    dispatch({
+      type: ADD_LINK,
+      payload: response.data,
+    });
+  }).catch(error => console.log(error)); 
 
 export const logoutUser = dispatch => ({
   type: SET_USER, payload: null,
