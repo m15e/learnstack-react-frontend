@@ -34,7 +34,7 @@ export const loginUser = user => dispatch => axios({
   const token = data.token;
   const id = data.id;    
   const favorites = data.favorites;
-  const userData = { username: user.username, token: token, id: id, favorites };  
+  const userData = { username: user.username, token: token, id: id, favorites: favorites };  
   console.log(userData);
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData)); 
@@ -114,7 +114,7 @@ export const favoriteStack = data => dispatch => axios({
   console.log(response);
   dispatch({
     type: FAVE_STACK,
-    payload: data['id'],
+    payload: parseInt(data['id']),
   });
 }).catch(error => console.log(error));
 

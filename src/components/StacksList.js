@@ -17,12 +17,14 @@ const StacksList = props => {
     deleteStack(data);
   };
 
-  const handleFavoriteStack = id => {
-    console.log('hello');
+  const handleFavoriteStack = id => { 
     const data = { id, auth: `Bearer ${user.token}` };
     favoriteStack(data);
   };
 
+  const setFavorite = id => {
+    return user && user.favorites && user.favorites.includes(parseInt(id));
+  };
 
   const stackArray = stacks.items.map(stack => (
     <Stack key={stack.id} 
@@ -31,6 +33,7 @@ const StacksList = props => {
            tags={stack.tags} 
            links={stack.links.length}
            handleDeleteStack={handleDeleteStack}
+           setFavorite={setFavorite(stack.id)}
            handleFavoriteStack={handleFavoriteStack} />
   ));
 

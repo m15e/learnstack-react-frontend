@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { GoZap, GoFlame, GoChevronUp, GoChevronDown } from 'react-icons/go';
+import { GoZap, GoFlame } from 'react-icons/go';
 
 const Stack = props => {
-  const { title, tags, id, links, xfavorited, handleDeleteStack, handleFavoriteStack } = props;
+  const { title, tags, id, links, handleDeleteStack, handleFavoriteStack, setFavorite } = props;
+
+  //const [isFavorite, setIsFavorite] = useState();  
 
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>));
 
@@ -18,6 +20,9 @@ const Stack = props => {
     <div className='stack tile box'>
       <button onClick={() => handleDeleteStack(id)}>Delete Stack</button>
       <button onClick={() => handleFavoriteStack(id)}>Favorite Stack</button>
+      <div className="favorite-icon">
+        {setFavorite ? <GoFlame className='flame-icon flame-on' /> : <GoFlame className='flame-icon' />}
+      </div>
       <div className="stack-bg">
         
       </div>

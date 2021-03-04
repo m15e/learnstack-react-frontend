@@ -13,7 +13,7 @@ const StackPage = props => {
   const data = stackId;
   const isStackOwner = user ? user.id == stack.user_id : false;    
   const [isFavorite, setIsFavorite] = useState('no');  
-  const favoriteCondition = user && user.favorites && user.favorites.includes(parseInt(stackId))
+  const favoriteCondition = user && user.favorites && user.favorites.includes(parseInt(stackId));
 
 
   const handleDeleteLink = linkId => {
@@ -29,7 +29,7 @@ const StackPage = props => {
 
   useEffect(() => {
     getStack(stackId);   
-    setIsFavorite(user.favorites && user.favorites.includes(parseInt(stackId)));   
+    setIsFavorite(favoriteCondition);   
   }, [getStack]);
 
   const linkArray = stack.links ? stack.links.map(link => (
