@@ -1,4 +1,4 @@
-import { SET_USER, CLEAR_USER, FAVE_STACK } from '../actions/types';
+import { SET_USER, CLEAR_USER, FAVE_STACK, UNFAVE_STACK } from '../actions/types';
 
 const initialState = {  
   username: '',
@@ -17,6 +17,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: [...state.favorites, action.payload]
+      };
+    case UNFAVE_STACK:
+      return {
+        ...state,
+        favorites: state.favorites.filter(fav => fav !== action.payload),
       };
     default:
       return state;

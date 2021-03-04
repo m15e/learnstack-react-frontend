@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteStack, getStacks, favoriteStack } from '../actions';
+import { deleteStack, getStacks, favoriteStack, unFavoriteStack } from '../actions';
 import Stack from './Stack';
 import StacksForm from './StacksForm';
 
 const StacksList = props => {  
-  const { stacks, getStacks, user, deleteStack, favoriteStack } = props;
+  const { stacks, getStacks, user, deleteStack, favoriteStack, unFavoriteStack } = props;
   const loggedInUser = localStorage.getItem('user');
 
   useEffect(() => {
@@ -17,9 +17,13 @@ const StacksList = props => {
     deleteStack(data);
   };
 
-  const handleFavoriteStack = id => { 
+  const handleFavoriteStack = (id, isFavorite) => { 
     const data = { id, auth: `Bearer ${user.token}` };
-    favoriteStack(data);
+    if (isFavorite) {
+      favoriteStack(data);
+    } else {
+      unFavoriteStack(data);
+    }
   };
 
   const setFavorite = id => {
@@ -60,6 +64,7 @@ const mapDispatchToProps = dispatch => ({
   getStacks: () => dispatch(getStacks()),
   deleteStack: data => dispatch(deleteStack(data)), 
   favoriteStack: data => dispatch(favoriteStack(data)),
+  unFavoriteStack: data => dispatch(unFavoriteStack(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksList);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, FAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, FAVE_STACK, UNFAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -117,6 +117,20 @@ export const favoriteStack = data => dispatch => axios({
     payload: parseInt(data['id']),
   });
 }).catch(error => console.log(error));
+
+export const unFavoriteStack = data => dispatch => axios({
+  method: 'delete',
+  url: `${FAVES_API}/${data['id']}`,
+  headers: {
+        'authorization': data['auth'],
+        'Content-Type': 'application/json'
+  },
+}).then(() => {
+  dispatch({
+    type: UNFAVE_STACK,
+    payload: data['id'],
+  });
+});
 
 
 
