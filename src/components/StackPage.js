@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getStack, deleteLink } from '../actions';
+import { getStack, deleteLink, favoriteStack } from '../actions';
 import LinkForm from './LinkForm';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import { GoChevronLeft } from 'react-icons/go';
 
 const StackPage = props => {
-  const { user, stack, getStack, upvoteStack, deleteLink } = props;
+  const { user, stack, getStack, favoriteStack, deleteLink } = props;
   
   const stackId = window.location.href.split('/stack/').splice(1).toString();
   const data = stackId;
-  const isStackOwner = user ? user.id == stack.user_id : false;  
-  const [isFavorite, setIsFavorite] = useState(false);
+  const isStackOwner = user ? user.id == stack.user_id : false;    
+  const [isFavorite, setIsFavorite] = useState('no');  
+  const favoriteCondition = user && user.favorites && user.favorites.includes(parseInt(stackId))
 
 
   const handleDeleteLink = linkId => {
     const data = { id: linkId, auth: `Bearer ${user.token}` };
     deleteLink(data);
   };
+
+  const handleFavoriteStack = id => {
+    const data = { id, auth: `Bearer ${user.token}` };
+    favoriteStack(data);
+    setIsFavorite(favoriteCondition); 
+  }
 
   useEffect(() => {
     getStack(stackId);   
@@ -39,7 +46,7 @@ const StackPage = props => {
       <Link to={'/stacks'} className='back-to-stacks'><GoChevronLeft /></Link>
       <Navigation />
       <div className="container is-max-desktop">
-        <button onClick={() => console.log('click')} className='favorite-button'>Add to favorites</button>   
+        <button onClick={() => handleFavoriteStack(stackId)} className='favorite-button'>Add to favorites</button>   
         <h3 className="title">{ stack.title }</h3>
         <p>is fave: { isFavorite ? 'yes' : 'no' }</p>
         {stack.tags && stack.tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>))}
@@ -58,6 +65,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({  
   getStack: data => dispatch(getStack(data)),
   deleteLink: data => dispatch(deleteLink(data)),
+  favoriteStack: data => dispatch(favoriteStack(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StackPage);
