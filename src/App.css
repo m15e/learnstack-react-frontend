@@ -115,10 +115,13 @@ nav {
     padding-left: 30px; }
   .stack .columns .column {
     text-align: center;
-    margin: 0 auto; }
+    margin: 0 auto;
+    flex-grow: unset;
+    display: block; }
     .stack .columns .column span {
       font-size: 0.9rem;
       display: flex;
+      text-align: center;
       color: rgba(0, 0, 0, 0.6); }
   .stack .columns .column:last-of-type {
     padding-right: 30px; }

@@ -7,19 +7,22 @@ import Navigation from './Navigation';
 import { GoChevronLeft } from 'react-icons/go';
 
 const StackPage = props => {
-  const { user, stack, getStack, deleteLink } = props;
+  const { user, stack, getStack, upvoteStack, deleteLink } = props;
   
   const stackId = window.location.href.split('/stack/').splice(1).toString();
   const data = stackId;
   const isStackOwner = user ? user.id == stack.user_id : false;  
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleDeleteLink = id => {
-    const data = { id, auth: `Bearer ${user.token}` };
+
+  const handleDeleteLink = linkId => {
+    const data = { id: linkId, auth: `Bearer ${user.token}` };
     deleteLink(data);
   };
-  
+
   useEffect(() => {
     getStack(stackId);   
+    setIsFavorite(user.favorites && user.favorites.includes(parseInt(stackId)));   
   }, [getStack]);
 
   const linkArray = stack.links ? stack.links.map(link => (
@@ -35,8 +38,10 @@ const StackPage = props => {
     <div className='stack-page'>      
       <Link to={'/stacks'} className='back-to-stacks'><GoChevronLeft /></Link>
       <Navigation />
-      <div className="container is-max-desktop">        
+      <div className="container is-max-desktop">
+        <button onClick={() => console.log('click')} className='favorite-button'>Add to favorites</button>   
         <h3 className="title">{ stack.title }</h3>
+        <p>is fave: { isFavorite ? 'yes' : 'no' }</p>
         {stack.tags && stack.tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>))}
         {linkArray}
         {isStackOwner && <LinkForm />}

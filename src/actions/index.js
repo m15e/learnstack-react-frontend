@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, DELETE_STACK, DELETE_LINK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, FAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
 const STACKS_API = 'http://localhost:3000/api/v1/stacks';
 const LINKS_API = 'http://localhost:3000/api/v1/links';
 const AUTH_API = 'http://localhost:3000/api/v1/authenticate';
+const FAVES_API = 'http://localhost:3000/api/v1/favorite_stacks';
 
 export const createUser = user => dispatch => axios({
   method: 'post',
@@ -17,7 +18,7 @@ export const createUser = user => dispatch => axios({
   const data = response.data.data;
   const token = data.token;
   const id = data.id;  
-  const userData = { username: user.username, token: token, id: id };
+  const userData = { username: user.username, token: token, id: id };  
 
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData));
@@ -32,7 +33,9 @@ export const loginUser = user => dispatch => axios({
   const data = response.data;
   const token = data.token;
   const id = data.id;    
-  const userData = { username: user.username, token: token, id: id, };  
+  const favorites = data.favorites;
+  const userData = { username: user.username, token: token, id: id, favorites };  
+  console.log(userData);
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData)); 
 }).catch(error => console.log(error));
@@ -95,9 +98,31 @@ export const getStack = data => dispatch => axios({
   });
 }).catch(error => console.log(error));
 
+export const favoriteStack = data => dispatch => axios({
+  method: 'post',
+  url: FAVES_API,
+  headers: {
+        'authorization': data['auth'],
+        'Content-Type': 'application/json'
+  },
+  data: {
+    favorite: {
+      favorited_id: data['id'],
+    },
+  },
+}).then(response => {  
+  console.log(response);
+  dispatch({
+    type: FAVE_STACK,
+    payload: data['id'],
+  });
+}).catch(error => console.log(error));
+
+
+
 export const createLink = data => dispatch => axios({
     method: 'post',
-    url: 'http://localhost:3000/api/v1/links',
+    url: LINKS_API,
     headers: {
           'authorization': data['auth'],
           'Content-Type': 'application/json'

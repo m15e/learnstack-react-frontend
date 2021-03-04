@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteStack, getStacks } from '../actions';
+import { deleteStack, getStacks, favoriteStack } from '../actions';
 import Stack from './Stack';
 import StacksForm from './StacksForm';
 
 const StacksList = props => {  
-  const { stacks, getStacks, user, deleteStack } = props;
+  const { stacks, getStacks, user, deleteStack, favoriteStack } = props;
   const loggedInUser = localStorage.getItem('user');
 
   useEffect(() => {
@@ -17,6 +17,12 @@ const StacksList = props => {
     deleteStack(data);
   };
 
+  const handleFavoriteStack = id => {
+    console.log('hello');
+    const data = { id, auth: `Bearer ${user.token}` };
+    favoriteStack(data);
+  };
+
 
   const stackArray = stacks.items.map(stack => (
     <Stack key={stack.id} 
@@ -24,7 +30,8 @@ const StacksList = props => {
            title={stack.title} 
            tags={stack.tags} 
            links={stack.links.length}
-           handleDeleteStack={handleDeleteStack} />
+           handleDeleteStack={handleDeleteStack}
+           handleFavoriteStack={handleFavoriteStack} />
   ));
 
   return (
@@ -49,6 +56,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getStacks: () => dispatch(getStacks()),
   deleteStack: data => dispatch(deleteStack(data)), 
+  favoriteStack: data => dispatch(favoriteStack(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksList);

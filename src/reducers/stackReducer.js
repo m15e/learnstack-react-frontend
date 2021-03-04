@@ -1,4 +1,4 @@
-import { GET_STACKS, GET_STACK, CREATE_STACK, DELETE_STACK, ADD_LINK, DELETE_LINK } from '../actions/types';
+import { GET_STACKS, GET_STACK, CREATE_STACK, DELETE_STACK, ADD_LINK, DELETE_LINK, FAVE_STACK } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -43,6 +43,8 @@ const stackReducer = (state = initialState, action) => {
           links: state.item.links.filter(link => link.id !== action.payload),
         },
       };
+    case FAVE_STACK:
+      return state;
     default:
       return state;
   }
