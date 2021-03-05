@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getStack, deleteLink, favoriteStack } from '../actions';
+import { getStack, deleteLink, getFavorites, favoriteStack, unFavoriteStack } from '../actions';
 import LinkForm from './LinkForm';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
-import { GoChevronLeft } from 'react-icons/go';
+import { GoChevronLeft, GoFlame } from 'react-icons/go';
 
 const StackPage = props => {
-  const { user, stack, getStack, favoriteStack, deleteLink } = props;
+  const { user, stack, favorites, getStack, deleteLink, getFavorites, favoriteStack, unFavoriteStack } = props;
   
-  const stackId = window.location.href.split('/stack/').splice(1).toString();
-  const data = stackId;
-  const isStackOwner = user ? user.id == stack.user_id : false;    
-  const [isFavorite, setIsFavorite] = useState('no');  
-  const favoriteCondition = user && user.favorites && user.favorites.includes(parseInt(stackId));
+  const stackId = parseInt(window.location.href.split('/stack/').splice(1).toString());
+  
+  const isStackOwner = user ? user.id == stack.user_id : false;        
+  
+  const [isFavorite, setIsFavorite] = useState(user && favorites.includes(stackId));  
 
 
   const handleDeleteLink = linkId => {
@@ -21,16 +21,23 @@ const StackPage = props => {
     deleteLink(data);
   };
 
-  const handleFavoriteStack = id => {
-    const data = { id, auth: `Bearer ${user.token}` };
-    favoriteStack(data);
-    setIsFavorite(favoriteCondition); 
-  }
+  const handleFavorite = () => {
+    const data = { id: stackId.toString(), auth: `Bearer ${user.token}` };
+    if (isFavorite) {
+      unFavoriteStack(data);
+    } else {
+      favoriteStack(data);
+    };
+    setIsFavorite(!isFavorite);
+  };
 
-  useEffect(() => {
+  useEffect(() => {    
     getStack(stackId);   
-    setIsFavorite(favoriteCondition);   
-  }, [getStack]);
+    if (user) {
+      getFavorites(user.id);
+      setIsFavorite(favorites.includes(stackId));
+    }
+  }, [getStack, setIsFavorite]);
 
   const linkArray = stack.links ? stack.links.map(link => (
     <div className="link" key={link.id}>     
@@ -45,8 +52,10 @@ const StackPage = props => {
     <div className='stack-page'>      
       <Link to={'/stacks'} className='back-to-stacks'><GoChevronLeft /></Link>
       <Navigation />
-      <div className="container is-max-desktop">
-        <button onClick={() => handleFavoriteStack(stackId)} className='favorite-button'>Add to favorites</button>   
+        <div className="container is-max-desktop">
+        <div className="favorite-icon">
+          <button onClick={handleFavorite}>{isFavorite ? 'UnFavorite' : 'Favorite'}</button>
+        </div>
         <h3 className="title">{ stack.title }</h3>
         <p>is fave: { isFavorite ? 'yes' : 'no' }</p>
         {stack.tags && stack.tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>))}
@@ -60,12 +69,15 @@ const StackPage = props => {
 const mapStateToProps = state => ({
   user: state.user,
   stack: state.stacks.item,
+  favorites: state.favorites,
 });
 
 const mapDispatchToProps = dispatch => ({  
   getStack: data => dispatch(getStack(data)),
   deleteLink: data => dispatch(deleteLink(data)),
-  favoriteStack: data => dispatch(favoriteStack(data)),
+  getFavorites: data => dispatch(getFavorites(data)),
+  favoriteStack: data => dispatch(favoriteStack(data)),  
+  unFavoriteStack: data => dispatch(unFavoriteStack(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StackPage);

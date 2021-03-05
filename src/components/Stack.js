@@ -20,7 +20,7 @@ const Stack = props => {
     <div className='stack tile box'>
       <button onClick={() => handleDeleteStack(id)}>Delete Stack</button>
       {setFavorite ? 
-        <button onClick={() => handleFavoriteStack(id,false)}>UnFavorite Stack</button> :
+        <button onClick={() => handleFavoriteStack(id,false)}>UnFavorite Stack</button>:
         <button onClick={() => handleFavoriteStack(id,true)}>Favorite Stack</button>} 
       <div className="favorite-icon">
         {setFavorite ? <GoFlame className='flame-icon flame-on' /> : <GoFlame className='flame-icon' />}

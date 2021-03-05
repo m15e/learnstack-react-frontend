@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteStack, getStacks, favoriteStack, unFavoriteStack } from '../actions';
+import { deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack } from '../actions';
 import Stack from './Stack';
 import StacksForm from './StacksForm';
 
 const StacksList = props => {  
-  const { stacks, getStacks, user, deleteStack, favoriteStack, unFavoriteStack } = props;
+  const { stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack } = props;
   const loggedInUser = localStorage.getItem('user');
 
   useEffect(() => {
-    getStacks();    
-  }, []);
+    getStacks();
+    if (user) {     
+      const stored_user = JSON.parse(loggedInUser);
+      getFavorites(stored_user.id);
+    };
+  }, []);  
 
   const handleDeleteStack = id => {
     const data = { id, auth: `Bearer ${user.token}` };
@@ -18,16 +22,12 @@ const StacksList = props => {
   };
 
   const handleFavoriteStack = (id, isFavorite) => { 
-    const data = { id, auth: `Bearer ${user.token}` };
+    const data = { id, auth: `Bearer ${user.token}`, user };
     if (isFavorite) {
       favoriteStack(data);
     } else {
       unFavoriteStack(data);
-    }
-  };
-
-  const setFavorite = id => {
-    return user && user.favorites && user.favorites.includes(parseInt(id));
+    };
   };
 
   const stackArray = stacks.items.map(stack => (
@@ -37,7 +37,7 @@ const StacksList = props => {
            tags={stack.tags} 
            links={stack.links.length}
            handleDeleteStack={handleDeleteStack}
-           setFavorite={setFavorite(stack.id)}
+           setFavorite={user ? favorites.includes(parseInt(stack.id)) : false}
            handleFavoriteStack={handleFavoriteStack} />
   ));
 
@@ -58,11 +58,13 @@ const StacksList = props => {
 const mapStateToProps = state => ({
   stacks: state.stacks,
   user: state.user,
+  favorites: state.favorites,
 });
 
 const mapDispatchToProps = dispatch => ({
   getStacks: () => dispatch(getStacks()),
   deleteStack: data => dispatch(deleteStack(data)), 
+  getFavorites: data => dispatch(getFavorites(data)),
   favoriteStack: data => dispatch(favoriteStack(data)),
   unFavoriteStack: data => dispatch(unFavoriteStack(data)),
 })

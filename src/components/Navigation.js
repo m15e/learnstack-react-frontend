@@ -6,7 +6,7 @@ import UsersForm from './UsersForm';
 
 const Navigation = props => {  
   const { user, setUser, logoutUser } = props;
-  let loggedInUser = localStorage.getItem('user');
+  let loggedInUser = localStorage.getItem('user'); // culprit
   const setType = document.querySelectorAll('.set-form-type');  
   const [activeModal, setActiveModal] = useState(false);
   const closeModal = () => setActiveModal(false);    
@@ -36,8 +36,10 @@ const Navigation = props => {
   };  
 
   const handleUser = () => {
-    if (loggedInUser) {      
-      setUser(loggedInUser);      
+    if (localStorage.getItem('user')) {     
+      console.log(localStorage); 
+      console.log(localStorage.getItem('user')); 
+      setUser(localStorage.getItem('user'));      
     };
     setActiveModal(false);    
   };

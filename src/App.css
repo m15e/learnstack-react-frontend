@@ -157,6 +157,8 @@ nav {
   margin-right: 5px;
   background-color: #00d792;
   color: #fff; }
+.stack-page .flame-on {
+  fill: #000; }
 
 .link {
   display: grid;

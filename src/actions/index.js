@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, FAVE_STACK, UNFAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
+import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, SET_FAVORITES, FAVE_STACK, UNFAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
 
 // will need to pass username, password in future
 const USERS_API = 'http://localhost:3000/api/v1/users';
@@ -36,8 +36,9 @@ export const loginUser = user => dispatch => axios({
   const favorites = data.favorites;
   const userData = { username: user.username, token: token, id: id, favorites: favorites };  
   console.log(userData);
-  dispatch({ type: SET_USER, payload: userData });
-  localStorage.setItem('user', JSON.stringify(userData)); 
+  dispatch({ type: SET_USER, payload: (({ favorites, ...o }) => o)(userData) });
+  dispatch({ type: SET_FAVORITES, payload: userData.favorites });
+  localStorage.setItem('user', JSON.stringify((({ favorites, ...o }) => o)(userData))); 
 }).catch(error => console.log(error));
 
 export const setUser = user => dispatch => {
@@ -87,6 +88,7 @@ export const getStacks = () => dispatch => axios({
   });
 }).catch(error => console.log(error));
 
+
 export const getStack = data => dispatch => axios({
   method: 'get',
   url: `${STACKS_API}/${data}`,
@@ -97,6 +99,17 @@ export const getStack = data => dispatch => axios({
     payload: stack,
   });
 }).catch(error => console.log(error));
+
+export const getFavorites = id => dispatch => axios({
+  method: 'get',
+  url: `${FAVES_API}?user_id=${id}`,  
+}).then(response => {
+  const data = response.data;
+  console.log(response);
+  //const favorites = data.favorites;    
+  dispatch({ type: SET_FAVORITES, payload: data });
+  localStorage.setItem('favorites', JSON.stringify(data)); 
+});
 
 export const favoriteStack = data => dispatch => axios({
   method: 'post',
@@ -110,12 +123,11 @@ export const favoriteStack = data => dispatch => axios({
       favorited_id: data['id'],
     },
   },
-}).then(response => {  
-  console.log(response);
+}).then(() => {    
   dispatch({
     type: FAVE_STACK,
     payload: parseInt(data['id']),
-  });
+  });  
 }).catch(error => console.log(error));
 
 export const unFavoriteStack = data => dispatch => axios({
@@ -129,8 +141,8 @@ export const unFavoriteStack = data => dispatch => axios({
   dispatch({
     type: UNFAVE_STACK,
     payload: data['id'],
-  });
-});
+  });  
+}).catch(error => console.log(error));;
 
 
 

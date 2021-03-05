@@ -127,9 +127,6 @@ nav {
   width: 30%;
   display: block !important;
 
-  .flame-icon {
-  }
-
   .flame-on {
     fill: #000;
   }
@@ -229,6 +226,9 @@ nav {
     margin-right: 5px;
     background-color: $light-green;
     color: #fff;
+  }
+  .flame-on {
+    fill: #000;
   }
 }
 

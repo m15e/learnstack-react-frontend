@@ -8,6 +8,7 @@ const initialState = {
     token: '',
     id: '',
   },
+  favorites: [],
   stacks: {
     items: [],
     item: {},

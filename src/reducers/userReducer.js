@@ -12,20 +12,10 @@ const userReducer = (state = initialState, action) => {
     case SET_USER:
       return action.payload;
     case CLEAR_USER:
-      return initialState;
-    case FAVE_STACK:
-      return {
-        ...state,
-        favorites: [...state.favorites, action.payload]
-      };
-    case UNFAVE_STACK:
-      return {
-        ...state,
-        favorites: state.favorites.filter(fav => fav !== action.payload),
-      };
+      return initialState;    
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default userReducer; 
