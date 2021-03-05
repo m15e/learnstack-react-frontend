@@ -127,10 +127,11 @@ nav {
     padding: 0.5rem;
     width: 40px;
     height: 40px;
-    top: 0;
-    left: 0;
+    top: 5px;
+    left: 5px;
     background-color: #fff;
-    border-top-left-radius: 6px;
+    // border-top-left-radius: 6px;
+    border-radius: 50%;
   }
 }
 
@@ -200,10 +201,18 @@ nav {
   .set-fave {
     border: none;
     margin-top: 2px;
-    margin-left: 5px;
+    margin-left: 10px;
+
+    svg {
+      fill: $orange;
+    }
   }
 
   .set-fave:hover {
+    color: $orange;
+  }
+
+  .set-fave:focus {
     color: $orange;
   }
 

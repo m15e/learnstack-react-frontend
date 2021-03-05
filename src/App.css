@@ -93,10 +93,10 @@ nav {
   padding: 0.5rem;
   width: 40px;
   height: 40px;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
   background-color: #fff;
-  border-top-left-radius: 6px; }
+  border-radius: 50%; }
 
 .delete-stack {
   position: relative;
@@ -147,8 +147,12 @@ nav {
   .stack .set-fave {
     border: none;
     margin-top: 2px;
-    margin-left: 5px; }
+    margin-left: 10px; }
+    .stack .set-fave svg {
+      fill: #ff5e21; }
   .stack .set-fave:hover {
+    color: #ff5e21; }
+  .stack .set-fave:focus {
     color: #ff5e21; }
   .stack .columns .column:first-of-type {
     padding-left: 30px; }

@@ -40,10 +40,10 @@ const Stack = props => {
             </div>
           </div>
                   
-          <Link to={`/stack/${id}`} className='button is-rounded lb-white is-small stack-link'>View Collection</Link>
           {setFavorite ? 
                       <button className="button is-small set-fave" onClick={() => handleFavoriteStack(id,false)}><GoFlame className='flame-icon' />&nbsp; Remove favorite</button>:
                       <button className="button is-small set-fave" onClick={() => handleFavoriteStack(id,true)}><GoFlame className='flame-icon' />&nbsp; Add to favorites</button>}
+          <Link to={`/stack/${id}`} className='button is-rounded lb-white is-small stack-link'>View Collection</Link>
         </div>
       </div>    
   );
