@@ -37,7 +37,7 @@ const StackPage = props => {
       getFavorites(user.id);
       setIsFavorite(favorites.includes(stackId));
     }
-  }, [getStack, setIsFavorite]);
+  }, [getStack, setIsFavorite, user]);
 
   const linkArray = stack.links ? stack.links.map(link => (
     <div className="link" key={link.id}>     
