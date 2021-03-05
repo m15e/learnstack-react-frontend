@@ -121,6 +121,10 @@ nav {
   padding: 0 0 1.25rem 0;
 }
 
+.nav-container {
+  justify-content: space-between;
+}
+
 .favorite-icon {
   .flame-icon {
     position: relative;
@@ -137,7 +141,7 @@ nav {
 
 .delete-stack {
   position: relative;
-  left: 273px;
+  left: 88.5%;
   top: -43px;
   height: 30px;
   width: 30px;
@@ -164,8 +168,8 @@ nav {
 .stack {
   margin: 0 0 12px 0 !important;
   flex: none;
-  width: 30%;
   display: block !important;
+  width: 30%;
 
   .flame-on {
     fill: $orange;
@@ -198,24 +202,6 @@ nav {
     line-height: 1;
   }
 
-  .set-fave {
-    border: none;
-    margin-top: 2px;
-    margin-left: 10px;
-
-    svg {
-      fill: $orange;
-    }
-  }
-
-  .set-fave:hover {
-    color: $orange;
-  }
-
-  .set-fave:focus {
-    color: $orange;
-  }
-
   .columns {
     .column:first-of-type {
       padding-left: 30px;
@@ -244,6 +230,24 @@ nav {
     margin-right: 5px;
     background-color: $light-green;
     color: #fff;
+  }
+
+  .set-fave {
+    border: none;
+    margin-top: 2px;
+    margin-left: 10px;
+
+    svg {
+      fill: $orange;
+    }
+  }
+
+  .set-fave:hover {
+    color: $orange;
+  }
+
+  .set-fave:focus {
+    color: $orange;
   }
 }
 
@@ -287,15 +291,100 @@ nav {
   }
 
   .flame-on {
-    fill: #000;
+    fill: $orange;
+  }
+  .set-fave-page {
+    font-size: 0.9rem;
+    float: right;
+    svg {
+      fill: $orange;
+    }
+  }
+
+  .set-fave-page:hover {
+    color: $orange;
+  }
+
+  .set-fave-page:focus {
+    color: $orange;
+  }
+
+  .fave-icon-page {
+    margin-bottom: 20px;
   }
 }
 
 .link {
   display: grid;
-  grid-template-columns: 50% 25% 25%;
+  grid-template-columns: 50% 25% 20% 5%;
   width: 100%;
   justify-content: space-between;
   padding: 15px 0 10px 0;
   align-items: center;
+
+  .delete-link {
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+
+    svg {
+      fill: rgba($color: $orange, $alpha: 0.7);
+      height: 20px;
+      width: 20px;
+      margin-top: 5px;
+    }
+  }
+
+  .delete-link:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .container {
+    margin: 5vw;
+  }
+  .stack-form {
+    form {
+      width: 70vw;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    .container {
+      display: flex;
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .stack-form {
+    form {
+      width: 90vw;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stack-container {
+    justify-content: space-around;
+  }
+  .stack {
+    width: 90%;
+  }
+
+  .stack-form {
+    form {
+      width: 90vw;
+      flex-direction: column;
+
+      input {
+        margin-bottom: 15px;
+      }
+    }
+  }
 }

@@ -51,19 +51,14 @@ const Navigation = props => {
   return (
     <>
       <nav className="navbar">
-        <div className="container is-max-desktop">
+        <div className="container is-max-desktop nav-container">
           <div className="navbar-brand">
             <Link to={'/'} className="navbar-item">
               {/* <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" /> */}
               LearnStack
             </Link>
-            <span className="navbar-burger" data-target="navbarMenu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
           </div>
-          <div id="navbarMenu" className="navbar-menu">
+          <div id="navbarMenu" className="nav">
             <div className="navbar-end user-buttons">              
               {!loggedInUser &&
                 <>

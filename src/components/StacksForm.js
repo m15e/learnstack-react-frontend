@@ -39,7 +39,7 @@ const StacksForm = props => {
           <div className="navbar-brand">            
             <h4 className='title is-5'><GoBeaker /> Create a Stack</h4>
           </div>
-          <div className="navbar-menu">
+          <div className="nav">
             <div className="navbar-end">
               <form onSubmit={handleSubmit} className='is-flex'>        
                 <input type="text" className="input is-rounded" name="title" placeholder="Add title" onChange={onChange} />

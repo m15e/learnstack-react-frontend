@@ -4,7 +4,7 @@ import { getStack, deleteLink, getFavorites, favoriteStack, unFavoriteStack } fr
 import LinkForm from './LinkForm';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
-import { GoChevronLeft, GoFlame } from 'react-icons/go';
+import { GoChevronLeft, GoFlame, GoX } from 'react-icons/go';
 
 const StackPage = props => {
   const { user, stack, favorites, getStack, deleteLink, getFavorites, favoriteStack, unFavoriteStack } = props;
@@ -41,10 +41,10 @@ const StackPage = props => {
 
   const linkArray = stack.links ? stack.links.map(link => (
     <div className="link" key={link.id}>     
-      <button onClick={() => handleDeleteLink(link.id)}>Delete Link</button> 
       <h3>{link.title}</h3>      
       <p className='link-medium'>Media Type: <span className='tag is-rounded is-primary'>{link.medium}</span></p>
       <a href={link.url} target='_blank' className='button is-rounded lb-white link-button'>View Resource</a>      
+      <button className='delete-link' onClick={() => handleDeleteLink(link.id)}><GoX /></button> 
     </div>
   )) : <p className='no-links'>No links in this stack yet</p>;
   
@@ -54,12 +54,17 @@ const StackPage = props => {
       <Navigation />
         <div className="container is-max-desktop">
         <div className="favorite-icon">
-          <button onClick={handleFavorite}>{isFavorite ? 'UnFavorite' : 'Favorite'}</button>
+          <button className="button set-fave-page is-rounded" onClick={handleFavorite}><GoFlame />&nbsp; {isFavorite ? 'Remove from favorites' : 'Add to favorites'}</button>
         </div>
         <h3 className="title">{ stack.title }</h3>
-        <p>is fave: { isFavorite ? 'yes' : 'no' }</p>
-        {stack.tags && stack.tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>))}
-        {linkArray}
+        <div className='fave-icon-page'>{ isFavorite ? <><GoFlame className='flame-icon flame-on' />&nbsp;Favorited Stack</> : <><GoFlame className='flame-icon' />&nbsp;Not in favorites</> }</div>        
+        <div className="stack-tags">
+          {stack.tags && stack.tags.split(' ').map(tag => (<span key={tag} className='tag is-rounded stack-tag'>{tag}</span>))}
+        </div>
+        
+        <div className="link-array">
+          {linkArray}
+        </div>
         {isStackOwner && <LinkForm />}
       </div>
     </div>
