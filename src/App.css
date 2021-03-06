@@ -25,8 +25,13 @@ nav {
     margin: 1rem auto 3rem; }
   .users-form input[type="text"],
   .users-form input[type="password"] {
-    background-color: transparent;
-    color: #000; }
+    background-color: transparent; }
+  .users-form input[type="password"] {
+    color: #ff5e21; }
+  .users-form input[type="text"]:focus,
+  .users-form input[type="password"]:focus {
+    box-shadow: none;
+    border-color: #ff5e21; }
   .users-form input[type="text"]::placeholder,
   .users-form input[type="password"]::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -158,6 +163,7 @@ nav {
       font-size: 0.9rem;
       display: flex;
       text-align: center;
+      flex-direction: column;
       color: rgba(0, 0, 0, 0.6); }
   .stack .columns .column:last-of-type {
     padding-right: 30px; }
@@ -215,6 +221,16 @@ nav {
 .stack-page .fave-icon-page {
   margin-bottom: 20px; }
 
+.link-form {
+  margin-top: 15px; }
+  .link-form .title {
+    font-weight: 400;
+    margin-left: 5px; }
+  .link-form input {
+    margin-bottom: 12px; }
+  .link-form button {
+    margin-top: 12px; }
+
 .link {
   display: grid;
   grid-template-columns: 50% 25% 20% 5%;
@@ -222,6 +238,18 @@ nav {
   justify-content: space-between;
   padding: 15px 0 10px 0;
   align-items: center; }
+  .link h3 {
+    margin-left: 20px; }
+  .link h3::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #00d792;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    left: -15px;
+    top: 18px; }
   .link .delete-link {
     border: none;
     background-color: transparent;
@@ -237,28 +265,105 @@ nav {
 
 @media screen and (max-width: 1080px) {
   .container {
-    margin: 5vw; }
+    margin: 0 5vw; }
 
   .stack-form form {
-    width: 70vw; } }
+    width: 70vw; }
+
+  .stack-list-title {
+    margin-left: 1.5rem; } }
 @media screen and (max-width: 1024px) {
   .navbar .container {
     display: flex;
-    width: 90%; } }
+    width: 90%; }
+    .navbar .container .navbar-end {
+      flex-direction: row; }
+      .navbar .container .navbar-end .navbar-item {
+        display: unset; } }
 @media screen and (max-width: 992px) {
   .stack-form form {
-    width: 90vw; } }
+    width: 70vw; } }
 @media screen and (max-width: 768px) {
+  .hero-body .title {
+    margin-bottom: 2rem; }
+
+  .users-form input {
+    width: 80%; }
+
+  .stack-list-title {
+    margin-left: 1rem !important; }
+
+  .container .title {
+    margin-left: 0; }
+
+  .stack .column:last-of-type {
+    padding-right: 0 !important; }
+
+  .navbar-end .navbar-item {
+    display: unset; }
+    .navbar-end .navbar-item button {
+      font-size: 0.9rem;
+      padding: 0.25rem 0.5rem; }
+
   .stack-container {
     justify-content: space-around; }
 
+  .stack-page .title {
+    font-size: 1.2rem; }
+  .stack-page .favorite-icon {
+    width: 100%; }
+  .stack-page .set-fave-page {
+    float: unset;
+    left: 50vw;
+    margin-bottom: 25px; }
+
   .stack {
     width: 90%; }
+    .stack h3,
+    .stack p {
+      padding-left: 12.5%; }
+    .stack .is-half {
+      width: 50%;
+      padding: 20px 0 !important;
+      margin: 0 !important;
+      display: inline-block !important; }
 
-  .stack-form form {
-    width: 90vw;
-    flex-direction: column; }
-    .stack-form form input {
-      margin-bottom: 15px; } }
+  .stack-form-container {
+    flex-direction: column;
+    margin: 0 2.5vw; }
+    .stack-form-container h4 {
+      padding-left: 1.25rem; }
+
+  .stack-form {
+    padding-left: 0 !important; }
+    .stack-form form {
+      width: 80vw;
+      flex-direction: column; }
+      .stack-form form input {
+        margin-bottom: 15px; }
+      .stack-form form button {
+        width: 100%; }
+
+  .stack-actions {
+    display: flex;
+    justify-content: space-around; }
+
+  .link {
+    grid-template-columns: 50% 25% 22% 3%; }
+    .link h3 {
+      font-size: 0.7rem; }
+    .link h3::before {
+      top: 13px; }
+    .link .link-medium span {
+      font-size: 0.65rem;
+      font-weight: 500; }
+
+  .link-button {
+    font-size: 0.65rem;
+    padding: 10px 15px;
+    font-weight: 500; } }
+@media screen and (max-width: 700px) {
+  .stack-page .set-fave-page {
+    left: 45vw; } }
 
 /*# sourceMappingURL=App.css.map */

@@ -41,7 +41,7 @@ const Navigation = props => {
       console.log(localStorage.getItem('user')); 
       setUser(localStorage.getItem('user'));      
     };
-    setActiveModal(false);    
+    
   };
 
   useEffect(() => {        

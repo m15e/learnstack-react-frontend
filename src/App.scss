@@ -42,7 +42,16 @@ nav {
   input[type="text"],
   input[type="password"] {
     background-color: transparent;
-    color: #000;
+  }
+
+  input[type="password"] {
+    color: $orange;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    box-shadow: none;
+    border-color: $orange;
   }
 
   input[type="text"]::placeholder,
@@ -217,6 +226,7 @@ nav {
         font-size: 0.9rem;
         display: flex;
         text-align: center;
+        flex-direction: column;
         color: rgba($color: #000000, $alpha: 0.6);
       }
     }
@@ -314,6 +324,23 @@ nav {
   }
 }
 
+.link-form {
+  margin-top: 15px;
+
+  .title {
+    font-weight: 400;
+    margin-left: 5px;
+  }
+
+  input {
+    margin-bottom: 12px;
+  }
+
+  button {
+    margin-top: 12px;
+  }
+}
+
 .link {
   display: grid;
   grid-template-columns: 50% 25% 20% 5%;
@@ -321,6 +348,22 @@ nav {
   justify-content: space-between;
   padding: 15px 0 10px 0;
   align-items: center;
+
+  h3 {
+    margin-left: 20px;
+  }
+
+  h3::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: $light-green;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    left: -15px;
+    top: 18px;
+  }
 
   .delete-link {
     border: none;
@@ -343,12 +386,15 @@ nav {
 
 @media screen and (max-width: 1080px) {
   .container {
-    margin: 5vw;
+    margin: 0 5vw;
   }
   .stack-form {
     form {
       width: 70vw;
     }
+  }
+  .stack-list-title {
+    margin-left: 1.5rem;
   }
 }
 
@@ -357,6 +403,14 @@ nav {
     .container {
       display: flex;
       width: 90%;
+
+      .navbar-end {
+        flex-direction: row;
+
+        .navbar-item {
+          display: unset;
+        }
+      }
     }
   }
 }
@@ -364,27 +418,135 @@ nav {
 @media screen and (max-width: 992px) {
   .stack-form {
     form {
-      width: 90vw;
+      width: 70vw;
     }
   }
 }
 
 @media screen and (max-width: 768px) {
+  .hero-body {
+    .title {
+      margin-bottom: 2rem;
+    }
+  }
+  .users-form {
+    input {
+      width: 80%;
+    }
+  }
+
+  .stack-list-title {
+    margin-left: 1rem !important;
+  }
+
+  .container .title {
+    margin-left: 0;
+  }
+
+  .stack .column:last-of-type {
+    padding-right: 0 !important;
+  }
+  .navbar-end {
+    .navbar-item {
+      display: unset;
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.25rem 0.5rem;
+      }
+    }
+  }
   .stack-container {
     justify-content: space-around;
   }
+  .stack-page {
+    .title {
+      font-size: 1.2rem;
+    }
+    .favorite-icon {
+      width: 100%;
+    }
+    .set-fave-page {
+      float: unset;
+      left: 50vw;
+      margin-bottom: 25px;
+    }
+  }
   .stack {
     width: 90%;
+
+    h3,
+    p {
+      padding-left: 12.5%;
+    }
+
+    .is-half {
+      width: 50%;
+      padding: 20px 0 !important;
+      margin: 0 !important;
+      display: inline-block !important;
+    }
+  }
+  .stack-form-container {
+    flex-direction: column;
+    margin: 0 2.5vw;
+
+    h4 {
+      padding-left: 1.25rem;
+    }
   }
 
   .stack-form {
+    padding-left: 0 !important;
     form {
-      width: 90vw;
+      width: 80vw;
       flex-direction: column;
 
       input {
         margin-bottom: 15px;
       }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .stack-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .link {
+    h3 {
+      font-size: 0.7rem;
+    }
+
+    h3::before {
+      top: 13px;
+    }
+
+    grid-template-columns: 50% 25% 22% 3%;
+
+    .link-medium {
+      span {
+        font-size: 0.65rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .link-button {
+    font-size: 0.65rem;
+    padding: 10px 15px;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .stack-page {
+    .set-fave-page {
+      left: 45vw;
     }
   }
 }

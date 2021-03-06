@@ -33,15 +33,15 @@ const LinkForm = props => {
   };
 
   return (
-    <>      
-      <h3>Add link:</h3>
+    <div className='link-form'>      
+      <h3 className='title is-6'>Add link:</h3>
       <form onSubmit={handleSubmit}>        
         <input type="text" className="input is-rounded" name="title" placeholder="title" onChange={onChange} />        
         <input type="text" className="input is-rounded" name="url" placeholder="url" onChange={onChange} />
-        <input type="text" className="input is-rounded" name="medium" placeholder="medium" onChange={onChange} />
+        <input type="text" className="input is-rounded" name="medium" placeholder="media type" onChange={onChange} />
         <button type="submit" className="button is-rounded orange-white">Add link</button>
       </form>
-    </>
+    </div>
   );
 };
 

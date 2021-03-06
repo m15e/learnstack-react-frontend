@@ -34,8 +34,8 @@ const StacksForm = props => {
 
   return (
     <div className='container is-fluid stack-form'>       
-      <nav className="navbar is-fixed-bottom" role="navigation" aria-label="main navigation">
-        <div className="container is-max-desktop">
+      <nav className="navbar is-bottom" role="navigation" aria-label="main navigation">
+        <div className="container is-max-desktop stack-form-container">
           <div className="navbar-brand">            
             <h4 className='title is-5'><GoBeaker /> Create a Stack</h4>
           </div>
