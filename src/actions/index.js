@@ -2,11 +2,11 @@ import axios from 'axios';
 import { SET_USER, GET_STACKS, GET_STACK, CREATE_STACK, ADD_LINK, SET_FAVORITES, FAVE_STACK, UNFAVE_STACK, DELETE_STACK, DELETE_LINK } from './types';
 
 // will need to pass username, password in future
-const USERS_API = 'http://localhost:3000/api/v1/users';
-const STACKS_API = 'http://localhost:3000/api/v1/stacks';
-const LINKS_API = 'http://localhost:3000/api/v1/links';
-const AUTH_API = 'http://localhost:3000/api/v1/authenticate';
-const FAVES_API = 'http://localhost:3000/api/v1/favorite_stacks';
+const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
+const STACKS_API = 'https://learnstack-api.herokuapp.com/api/v1/stacks';
+const LINKS_API = 'https://learnstack-api.herokuapp.com/api/v1/links';
+const AUTH_API = 'https://learnstack-api.herokuapp.com/api/v1/authenticate';
+const FAVES_API = 'https://learnstack-api.herokuapp.com/api/v1/favorite_stacks';
 
 export const createUser = user => dispatch => axios({
   method: 'post',
@@ -34,8 +34,7 @@ export const loginUser = user => dispatch => axios({
   const token = data.token;
   const id = data.id;    
   const favorites = data.favorites;
-  const userData = { username: user.username, token: token, id: id, favorites: favorites };  
-  console.log(userData);
+  const userData = { username: user.username, token: token, id: id, favorites: favorites };    
   dispatch({ type: SET_USER, payload: (({ favorites, ...o }) => o)(userData) });
   dispatch({ type: SET_FAVORITES, payload: userData.favorites });
   localStorage.setItem('user', JSON.stringify((({ favorites, ...o }) => o)(userData))); 
@@ -156,8 +155,7 @@ export const createLink = data => dispatch => axios({
     data: {
       link: data['link'],
     },
-  }).then(response => {
-    console.log(response.data);
+  }).then(response => {    
     dispatch({
       type: ADD_LINK,
       payload: response.data,
