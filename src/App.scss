@@ -18,6 +18,41 @@ nav {
   opacity: 0.8;
 }
 
+.hero {
+  background: url("https://pixabay.com/get/gfe07c5a7941beca28da675e06f5aed9bc0e11dbcaab1abfc5e2cc97049a9eb4bed2b874f220059e315e483ed1c157987_1280.jpg")
+    rgba($color: #000000, $alpha: 0.7) no-repeat center center;
+  background-size: cover;
+
+  .gradient-bg {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7) 0 0 no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .title {
+    color: #fff;
+  }
+
+  p {
+    color: #fff;
+  }
+}
+
+.navbar-brand {
+  a {
+    color: $orange;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+
+  a:hover {
+    color: $orange;
+    opacity: 0.7;
+  }
+}
+
 .container {
   max-width: 1024px;
 }

@@ -1,9 +1,11 @@
-import { GET_STACKS, GET_STACK, CREATE_STACK, DELETE_STACK, ADD_LINK, DELETE_LINK } from '../actions/types';
+import {
+  GET_STACKS, GET_STACK, CREATE_STACK, DELETE_STACK, ADD_LINK, DELETE_LINK,
+} from '../actions/types';
 
 const initialState = {
   items: [],
   item: {},
-}
+};
 
 const stackReducer = (state = initialState, action) => {
   switch (action.type) {

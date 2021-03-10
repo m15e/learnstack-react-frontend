@@ -3,13 +3,13 @@ import { FAVE_STACK, SET_FAVORITES, UNFAVE_STACK } from '../actions/types';
 const initialState = [];
 
 const favoritesReducer = (state = initialState, action) => {
-  switch (action.type) {  
+  switch (action.type) {
     case SET_FAVORITES:
-      return action.payload;  
+      return action.payload;
     case FAVE_STACK:
-      return [...state, action.payload];      
+      return [...state, action.payload];
     case UNFAVE_STACK:
-      return state.filter(fav => fav !== action.payload);      
+      return state.filter(fav => fav !== action.payload);
     default:
       return state;
   }

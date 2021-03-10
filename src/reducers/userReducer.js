@@ -1,21 +1,23 @@
-import { SET_USER, CLEAR_USER, FAVE_STACK, UNFAVE_STACK } from '../actions/types';
+import {
+  SET_USER, CLEAR_USER,
+} from '../actions/types';
 
-const initialState = {  
+const initialState = {
   username: '',
   token: '',
   id: '',
   favorites: [],
-}
+};
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return action.payload;
     case CLEAR_USER:
-      return initialState;    
+      return initialState;
     default:
       return state;
   }
 };
 
-export default userReducer; 
+export default userReducer;

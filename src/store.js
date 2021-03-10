@@ -12,18 +12,23 @@ const initialState = {
   stacks: {
     items: [],
     item: {},
-  }  
+  },
 };
 
 const middleware = [thunk];
 
+/* eslint-disable */
+
+
 const store = createStore(
-  rootReducer,  
+  rootReducer,
   initialState,
   compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // remove before submitting
-  ),  
+    window.__REDUX_DEVTOOLS_EXTENSION__
+    && window.__REDUX_DEVTOOLS_EXTENSION__(), 
+    ),
 );
+/* eslint-enable */
 
 export default store;
