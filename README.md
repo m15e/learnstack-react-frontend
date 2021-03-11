@@ -4,7 +4,7 @@
 
 ## Live Link
 
-[Open Live](https://m15e-react-bookstore.herokuapp.com/)
+[Open Live](https://learnstack-mvp.herokuapp.com/)
 
 ## Built With
 
