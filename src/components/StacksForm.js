@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { GoBeaker } from 'react-icons/go';
+import PropTypes from 'prop-types';
 import { createStack } from '../actions';
 
 const StacksForm = props => {
@@ -64,5 +65,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   createStack: stack => dispatch(createStack(stack)),
 });
+
+StacksForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    token: PropTypes.string.isRequired,
+  }).isRequired,
+  createStack: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksForm);

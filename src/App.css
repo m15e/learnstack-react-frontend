@@ -11,13 +11,16 @@ nav {
   opacity: 0.8; }
 
 .hero {
-  background: url("https://pixabay.com/get/gfe07c5a7941beca28da675e06f5aed9bc0e11dbcaab1abfc5e2cc97049a9eb4bed2b874f220059e315e483ed1c157987_1280.jpg") rgba(0, 0, 0, 0.7) no-repeat center center;
-  background-size: cover; }
+  background: url("https://source.unsplash.com/1024x768/?learning") rgba(0, 0, 0, 0.7) no-repeat center center;
+  background-size: cover;
+  height: 100vh; }
+  .hero .hero-body {
+    padding-bottom: 0 !important; }
   .hero .gradient-bg {
     position: absolute;
     background: rgba(0, 0, 0, 0.7) 0 0 no-repeat;
     background-size: 100% 100%;
-    height: 100%;
+    height: 100vh;
     width: 100%; }
   .hero .title {
     color: #fff; }

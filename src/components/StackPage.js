@@ -49,8 +49,8 @@ const StackPage = props => {
       <p className="link-medium">
         <span className="tag is-rounded is-primary">{link.medium}</span>
       </p>
-      <a href={link.url} target="_blank" className="button is-rounded lb-white link-button">Open link</a>
-      {user && <button className="delete-link" onClick={() => handleDeleteLink(link.id)}><GoX /></button>}
+      <a href={link.url} target="_blank" rel="noreferrer" className="button is-rounded lb-white link-button">Open link</a>
+      {user && <button type="button" className="delete-link" aria-label="delete" onClick={() => handleDeleteLink(link.id)}><GoX /></button>}
     </div>
   )) : <p className="no-links">No links in this stack yet</p>;
 
@@ -61,7 +61,7 @@ const StackPage = props => {
       <div className="container is-max-desktop">
         <div className="favorite-icon">
           {user && (
-            <button className="button set-fave-page is-rounded" onClick={handleFavorite}>
+            <button type="button" className="button set-fave-page is-rounded" onClick={handleFavorite}>
               <GoFlame />
 &nbsp;
               {' '}
@@ -98,23 +98,33 @@ const StackPage = props => {
   );
 };
 
+StackPage.defaultProps = {
+  stack: {
+    title: 'Stack Name',
+    tags: 'stack tags',
+    user_id: 1,
+    links: [],
+  },
+};
+
 StackPage.propTypes = {
-  getStack: PropTypes.func.isRequired, 
-  deleteLink: PropTypes.func.isRequired, 
-  getFavorites: PropTypes.func.isRequired, 
-  favoriteStack: PropTypes.func.isRequired, 
+  getStack: PropTypes.func.isRequired,
+  deleteLink: PropTypes.func.isRequired,
+  getFavorites: PropTypes.func.isRequired,
+  favoriteStack: PropTypes.func.isRequired,
   unFavoriteStack: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired,
   }).isRequired,
   stack: PropTypes.shape({
+    title: PropTypes.string,
     user_id: PropTypes.number.isRequired,
-    links: PropTypes.arrayOf(PropTypes.object).isRequired
+    tags: PropTypes.string.isRequired,
+    links: PropTypes.arrayOf(PropTypes.object),
   }),
   favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
-
 
 const mapStateToProps = state => ({
   user: state.user,

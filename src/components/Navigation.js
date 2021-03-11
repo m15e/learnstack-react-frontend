@@ -7,12 +7,13 @@ import UsersForm from './UsersForm';
 
 const Navigation = props => {
   const { setUser, logoutUser } = props;
-  const loggedInUser = localStorage.getItem('user'); // culprit
+  const loggedInUser = localStorage.getItem('user');
   const setType = document.querySelectorAll('.set-form-type');
   const [activeModal, setActiveModal] = useState(false);
   const closeModal = () => setActiveModal(false);
 
   const changeModalText = text => {
+    // eslint-disable-next-line
     [...setType].map(tag => tag.innerHTML = text);
   };
 

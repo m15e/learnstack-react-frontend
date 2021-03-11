@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Stack from './Stack';
+import StacksForm from './StacksForm';
 import {
   deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack,
 } from '../actions';
-import Stack from './Stack';
-import StacksForm from './StacksForm';
 
 const StacksList = props => {
   const {
@@ -17,9 +18,9 @@ const StacksList = props => {
   useEffect(() => {
     getStacks();
     if (user) {
-      const stored_user = JSON.parse(loggedInUser);
-      if (stored_user) {
-        getFavorites(stored_user.id);
+      const storedUser = JSON.parse(loggedInUser);
+      if (storedUser) {
+        getFavorites(storedUser.id);
         setLoggedIn(true);
       }
     }
@@ -48,7 +49,7 @@ const StacksList = props => {
       links={stack.links.length}
       loggedIn={loggedIn}
       handleDeleteStack={handleDeleteStack}
-      setFavorite={user ? favorites.includes(parseInt(stack.id)) : false}
+      setFavorite={user ? favorites.includes(+stack.id) : false}
       handleFavoriteStack={handleFavoriteStack}
     />
   ));
@@ -78,5 +79,21 @@ const mapDispatchToProps = dispatch => ({
   favoriteStack: data => dispatch(favoriteStack(data)),
   unFavoriteStack: data => dispatch(unFavoriteStack(data)),
 });
+
+StacksList.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    token: PropTypes.string.isRequired,
+  }).isRequired,
+  stacks: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
+  getStacks: PropTypes.func.isRequired,
+  deleteStack: PropTypes.func.isRequired,
+  getFavorites: PropTypes.func.isRequired,
+  favoriteStack: PropTypes.func.isRequired,
+  unFavoriteStack: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksList);
