@@ -19,8 +19,7 @@ nav {
 }
 
 .hero {
-  background:
-    url("https://source.unsplash.com/1024x768/?learning")
+  background: url("https://source.unsplash.com/1024x768/?learning")
     rgba($color: #000, $alpha: 0.7) no-repeat center center;
   background-size: cover;
   height: 100vh;
@@ -69,6 +68,8 @@ nav {
 
 .users-form {
   text-align: center;
+  width: 70%;
+  margin: 15vh auto;
 
   #newUser {
     display: none;
@@ -213,8 +214,7 @@ nav {
   }
 
   .stack-bg {
-    background:
-      url("https://source.unsplash.com/1024x768/?learning") no-repeat
+    background: url("https://source.unsplash.com/1024x768/?learning") no-repeat
       center center;
     height: 200px;
     background-size: cover;

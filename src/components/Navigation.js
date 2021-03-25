@@ -61,15 +61,15 @@ const Navigation = props => {
                 && (
                 <>
                   <span className="navbar-item">
-                    <button type="button" className="button is-rounded orange-white" onClick={() => setModal(false)}>
+                    <Link to="/login" className="button is-rounded orange-white">
                       <span>Login</span>
-                    </button>
+                    </Link>                    
                   </span>
                   <span className="navbar-item">
-                    <button type="button" className="button is-rounded orange-white" onClick={() => setModal(true)}>
+                    <Link to="/signup" className="button is-rounded orange-white">
                       <span>Sign Up</span>
-                    </button>
-                  </span>
+                    </Link>                    
+                  </span>                
                 </>
                 )}
               {loggedInUser
