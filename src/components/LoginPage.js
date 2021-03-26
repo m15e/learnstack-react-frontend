@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 // import Navigation from './Navigation';
-import { createUser } from '../actions';
+import { loginUser } from '../actions';
 
-const LoginPage = () => {
+const LoginPage = props => {
+  const { loginUser } = props;
 
 const [form, setForm] = useState({});
 
@@ -21,6 +24,8 @@ const handleSubmit = e => {
     username: form.username,
     password: form.password,
   };
+
+  loginUser(user);
 
   e.target.reset();
 };
@@ -49,4 +54,12 @@ return (
   );
 };
 
-export default LoginPage;
+LoginPage.propTypes = {
+  loginUser: PropTypes.func.isRequired,   
+};
+
+const mapDispatchToProps = dispatch => ({
+  loginUser: user => dispatch(loginUser(user)),  
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);
