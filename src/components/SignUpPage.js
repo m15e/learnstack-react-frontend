@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import Navigation from './Navigation';
 import { createUser } from '../actions';
 
 const SignUpPage = props => {
-  const { createUser } = props;
+  const { createUser, user } = props;
+  const history = useHistory();
 
   const [form, setForm] = useState({});
 
@@ -29,6 +30,12 @@ const SignUpPage = props => {
 
     e.target.reset();
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {      
+      history.push('/stacks');
+    }
+  }, [user]);
 
   return (
     <section className="sign-up">
@@ -60,8 +67,12 @@ SignUpPage.propTypes = {
   createUser: PropTypes.func.isRequired,   
 };
 
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
 const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user)),  
 });
 
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

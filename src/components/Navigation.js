@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setUser, logoutUser } from '../actions';
@@ -7,29 +7,9 @@ import UsersForm from './UsersForm';
 
 const Navigation = props => {
   const { setUser, logoutUser } = props;
-  const loggedInUser = localStorage.getItem('user');
-  const setType = document.querySelectorAll('.set-form-type');
-  const [activeModal, setActiveModal] = useState(false);
-  const closeModal = () => setActiveModal(false);
-
-  const changeModalText = text => {
-    // eslint-disable-next-line
-    [...setType].map(tag => tag.innerHTML = text);
-  };
-
-  const setModal = newUser => {
-    const userCheckBox = document.querySelector('#newUser');
-
-    if (newUser) {
-      userCheckBox.checked = true;
-      setActiveModal(true);
-      changeModalText('Sign up');
-    } else {
-      userCheckBox.checked = false;
-      setActiveModal(true);
-      changeModalText('Sign in');
-    }
-  };
+  const loggedInUser = localStorage.getItem('user');      
+  const history = useHistory();
+    
 
   const logOut = () => {
     logoutUser();
@@ -39,6 +19,8 @@ const Navigation = props => {
   const handleUser = () => {
     if (localStorage.getItem('user')) {
       setUser(localStorage.getItem('user'));
+    } else {
+      history.push('/');
     }
   };
 
@@ -80,17 +62,10 @@ const Navigation = props => {
                   </button>
                 </span>
                 )}
-            </div>
+            </div>          
           </div>
         </div>
-      </nav>
-      <div className={`modal ${activeModal ? 'is-active' : ''}`} id="userModal">
-        <div className="modal-background" />
-        <div className="modal-content">
-          <UsersForm handleUser={handleUser} />
-        </div>
-        <button type="button" className="modal-close is-large" aria-label="close" onClick={closeModal} />
-      </div>
+      </nav>      
     </>
   );
 };
