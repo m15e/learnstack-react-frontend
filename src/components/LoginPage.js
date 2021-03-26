@@ -28,8 +28,7 @@ const handleSubmit = e => {
 return (
   <section className="sign-up">
     <div className="users-form">
-      <p className="form-type set-form-type">Login</p>
-      <p className="form-subtitle">Welcome back</p>
+      <p className="form-type set-form-type">Login</p>      
       <form onSubmit={handleSubmit}>
         <input type="checkbox" id="newUser" name="signup" />
         <div className="field">
@@ -44,6 +43,7 @@ return (
         </div>
         <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
       </form>
+      <Link to='/signup' className='change-auth'>Sign Up Instead</Link> 
     </div>
   </section>
   );

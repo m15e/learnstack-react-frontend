@@ -39,7 +39,17 @@ nav {
   max-width: 1024px; }
 
 .form-type {
-  color: #000; }
+  color: #000;
+  margin: 5vh auto; }
+
+.sign-up form {
+  margin-bottom: 15px; }
+.sign-up .change-auth {
+  text-decoration: underline;
+  font-size: 14px; }
+.sign-up .change-auth:hover {
+  color: #713aca;
+  opacity: 0.7; }
 
 .users-form {
   text-align: center;
