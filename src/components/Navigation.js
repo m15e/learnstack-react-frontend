@@ -14,6 +14,7 @@ const Navigation = props => {
   const logOut = () => {
     logoutUser();
     localStorage.clear();
+    history.push('/');
   };
 
   const handleUser = () => {

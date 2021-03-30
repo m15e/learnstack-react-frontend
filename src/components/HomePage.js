@@ -17,7 +17,7 @@ const HomePage = () => (
           Discover and share the best collections of videos,
           articles, websites for learning things online.
         </p>
-        <Link to="/stacks" className="button orange-white is-rounded">View Collections</Link>
+        <Link to="/signup" className="button orange-white is-rounded">Start Learning Now</Link>
       </div>
     </div>
   </section>
