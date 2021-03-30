@@ -40,7 +40,7 @@ nav {
 
 .form-type {
   color: #000;
-  margin: 5vh auto; }
+  margin: 0 auto 5vh; }
 
 .sign-up form {
   margin-bottom: 15px; }
@@ -53,8 +53,8 @@ nav {
 
 .users-form {
   text-align: center;
-  width: 70%;
-  margin: 15vh auto; }
+  max-width: 1024px;
+  margin: 7vh auto 15vh; }
   .users-form #newUser {
     display: none; }
   .users-form .form-type {
@@ -306,7 +306,10 @@ nav {
     .navbar .container .navbar-end {
       flex-direction: row; }
       .navbar .container .navbar-end .navbar-item {
-        display: unset; } }
+        display: unset; }
+
+  .users-form {
+    width: 90%; } }
 @media screen and (max-width: 992px) {
   .stack-form form {
     width: 70vw; } }

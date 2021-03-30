@@ -64,7 +64,7 @@ nav {
 
 .form-type {
   color: #000;
-  margin: 5vh auto;
+  margin: 0 auto 5vh;
 }
 
 .sign-up {
@@ -83,8 +83,8 @@ nav {
 
 .users-form {
   text-align: center;
-  width: 70%;
-  margin: 15vh auto;
+  max-width: 1024px;
+  margin: 7vh auto 15vh;
 
   #newUser {
     display: none;
@@ -462,6 +462,10 @@ nav {
         }
       }
     }
+  }
+
+  .users-form {
+    width: 90%;
   }
 }
 

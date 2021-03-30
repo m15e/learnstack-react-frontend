@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import AuthNav from './AuthNav';
 // import Navigation from './Navigation';
 import { loginUser } from '../actions';
 
@@ -38,26 +39,29 @@ const LoginPage = props => {
   }, [user]);
 
   return (
-    <section className="sign-up">
-      <div className="users-form">
-        <p className="form-type set-form-type">Login</p>      
-        <form onSubmit={handleSubmit}>
-          <input type="checkbox" id="newUser" name="signup" />
-          <div className="field">
-            <div className="control">
-              <input className="input is-rounded" type="text" name="username" placeholder="Enter Username" onChange={onChange} />
+    <>
+      <AuthNav />
+      <section className="sign-up">
+        <div className="users-form">
+          <p className="form-type set-form-type">Login</p>      
+          <form onSubmit={handleSubmit}>
+            <input type="checkbox" id="newUser" name="signup" />
+            <div className="field">
+              <div className="control">
+                <input className="input is-rounded" type="text" name="username" placeholder="Enter Username" onChange={onChange} />
+              </div>
             </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input is-rounded" type="password" name="password" placeholder="Enter Password" onChange={onChange} />
+            <div className="field">
+              <div className="control">
+                <input className="input is-rounded" type="password" name="password" placeholder="Enter Password" onChange={onChange} />
+              </div>
             </div>
-          </div>
-          <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
-        </form>
-        <Link to='/signup' className='change-auth'>Sign Up Instead</Link> 
-      </div>
-    </section>
+            <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
+          </form>
+          <Link to='/signup' className='change-auth'>Sign Up Instead</Link> 
+        </div>
+      </section>
+    </>
     );
 };
 
