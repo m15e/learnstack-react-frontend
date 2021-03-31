@@ -22,7 +22,7 @@ const USERS_API = 'http://localhost:3000/api/v1/users';
 const STACKS_API = 'http://localhost:3000/api/v1/stacks';
 const LINKS_API = 'http://localhost:3000/api/v1/links';
 const AUTH_API = 'http://localhost:3000/api/v1/authenticate';
-const FAVES_API = 'http://localhost:3000/api/v1/favorite_stacks';
+const FAVES_API = 'http://localhost:3000/api/v1/favorites';
 
 export const createUser = user => dispatch => axios({
   method: 'post',
@@ -133,7 +133,7 @@ export const favoriteStack = data => dispatch => axios({
   },
   data: {
     favorite: {
-      favorited_id: data.id,
+      stack_id: data.id,
     },
   },
 }).then(() => {

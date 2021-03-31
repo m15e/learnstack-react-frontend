@@ -66,12 +66,12 @@ const mapDispatchToProps = dispatch => ({
   createStack: stack => dispatch(createStack(stack)),
 });
 
-StacksForm.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    token: PropTypes.string.isRequired,
-  }).isRequired,
-  createStack: PropTypes.func.isRequired,
-};
+// StacksForm.propTypes = {
+//   user: PropTypes.shape({
+//     id: PropTypes.string.isRequired,
+//     token: PropTypes.string.isRequired,
+//   }).isRequired,
+//   createStack: PropTypes.func.isRequired,
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksForm);

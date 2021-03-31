@@ -107,24 +107,24 @@ StackPage.defaultProps = {
   },
 };
 
-StackPage.propTypes = {
-  getStack: PropTypes.func.isRequired,
-  deleteLink: PropTypes.func.isRequired,
-  getFavorites: PropTypes.func.isRequired,
-  favoriteStack: PropTypes.func.isRequired,
-  unFavoriteStack: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired,
-  }).isRequired,
-  stack: PropTypes.shape({
-    title: PropTypes.string,
-    user_id: PropTypes.number.isRequired,
-    tags: PropTypes.string.isRequired,
-    links: PropTypes.arrayOf(PropTypes.object),
-  }),
-  favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
-};
+// StackPage.propTypes = {
+//   getStack: PropTypes.func.isRequired,
+//   deleteLink: PropTypes.func.isRequired,
+//   getFavorites: PropTypes.func.isRequired,
+//   favoriteStack: PropTypes.func.isRequired,
+//   unFavoriteStack: PropTypes.func.isRequired,
+//   user: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     token: PropTypes.string.isRequired,
+//   }).isRequired,
+//   stack: PropTypes.shape({
+//     title: PropTypes.string,
+//     user_id: PropTypes.number.isRequired,
+//     tags: PropTypes.string.isRequired,
+//     links: PropTypes.arrayOf(PropTypes.object),
+//   }),
+//   favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
+// };
 
 const mapStateToProps = state => ({
   user: state.user,

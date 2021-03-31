@@ -80,20 +80,20 @@ const mapDispatchToProps = dispatch => ({
   unFavoriteStack: data => dispatch(unFavoriteStack(data)),
 });
 
-StacksList.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    token: PropTypes.string.isRequired,
-  }).isRequired,
-  stacks: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  }).isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
-  getStacks: PropTypes.func.isRequired,
-  deleteStack: PropTypes.func.isRequired,
-  getFavorites: PropTypes.func.isRequired,
-  favoriteStack: PropTypes.func.isRequired,
-  unFavoriteStack: PropTypes.func.isRequired,
-};
+// StacksList.propTypes = {
+//   user: PropTypes.shape({
+//     id: PropTypes.string.isRequired,
+//     token: PropTypes.string.isRequired,
+//   }).isRequired,
+//   stacks: PropTypes.shape({
+//     items: PropTypes.arrayOf(PropTypes.object).isRequired,
+//   }).isRequired,
+//   favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
+//   getStacks: PropTypes.func.isRequired,
+//   deleteStack: PropTypes.func.isRequired,
+//   getFavorites: PropTypes.func.isRequired,
+//   favoriteStack: PropTypes.func.isRequired,
+//   unFavoriteStack: PropTypes.func.isRequired,
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksList);

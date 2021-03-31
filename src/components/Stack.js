@@ -25,9 +25,16 @@ const Stack = props => {
       </button>
     );
 
+  const bgURL = `url('https://source.unsplash.com/1024x768/?${tags.split(' ')[0]}')`
+
+  const divBg = {    
+    backgroundImage: bgURL,
+  };
+
   return (
     <div className="stack tile box">
-      <div className="stack-bg">
+      <p></p>
+      <div className="stack-bg" style={divBg}>
         {loggedIn && (
           <>
             <div className="favorite-icon">
