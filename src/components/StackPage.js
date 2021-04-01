@@ -26,7 +26,7 @@ const StackPage = props => {
   };
 
   const handleFavorite = () => {
-    const data = { id: stackId.toString(), auth: `Bearer ${user.token}` };
+    const data = { id: stackId, auth: `Bearer ${user.token}` };
     if (isFavorite) {
       unFavoriteStack(data);
     } else {
