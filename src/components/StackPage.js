@@ -18,7 +18,7 @@ const StackPage = props => {
 
   const isStackOwner = user ? user.id === stack.user_id : false;
 
-  const [isFavorite, setIsFavorite] = useState(user && favorites.includes(stackId));
+  const [isFavorite, setIsFavorite] = useState(user && favorites.some(f => f.stack_id === stackId));
 
   const handleDeleteLink = linkId => {
     const data = { id: linkId, auth: `Bearer ${user.token}` };
@@ -39,7 +39,7 @@ const StackPage = props => {
     getStack(stackId);
     if (user) {
       getFavorites(user.id);
-      setIsFavorite(favorites.includes(stackId));
+      setIsFavorite(favorites.some(f => f.stack_id === stackId));      
     }
   }, [getStack, setIsFavorite, user]);
 
