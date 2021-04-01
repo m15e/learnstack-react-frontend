@@ -121,7 +121,7 @@ export const getFavorites = id => dispatch => axios({
 }).then(response => {
   const { data } = response;
   dispatch({ type: SET_FAVORITES, payload: data });
-  localStorage.setItem('favorites', JSON.stringify(data));
+  //TEMP localStorage.setItem('favorites', JSON.stringify(data));
 });
 
 export const favoriteStack = data => dispatch => axios({

@@ -9,7 +9,8 @@ const favoritesReducer = (state = initialState, action) => {
     case FAVE_STACK:
       return [...state, action.payload];
     case UNFAVE_STACK:
-      return state.filter(fav => fav.id !== action.payload);
+      return state.filter(f => f.stack_id !== action.payload);  
+    //return state.filter(fav => fav.stack_id !== action.payload);
     default:
       return state;
   }

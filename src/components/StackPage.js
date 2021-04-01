@@ -39,7 +39,8 @@ const StackPage = props => {
     getStack(stackId);
     if (user) {
       getFavorites(user.id);
-      setIsFavorite(favorites.some(f => f.stack_id === stackId));      
+      setIsFavorite(favorites.some(f => f.stack_id === stackId));   
+      console.log(isStackOwner);   
     }
   }, [getStack, setIsFavorite, user]);
 
@@ -50,7 +51,7 @@ const StackPage = props => {
         <span className="tag is-rounded is-primary">{link.medium}</span>
       </p>
       <a href={link.url} target="_blank" rel="noreferrer" className="button is-rounded lb-white link-button">Open link</a>
-      {user && <button type="button" className="delete-link" aria-label="delete" onClick={() => handleDeleteLink(link.id)}><GoX /></button>}
+      {isStackOwner && <button type="button" className="delete-link" aria-label="delete" onClick={() => handleDeleteLink(link.id)}><GoX /></button>}
     </div>
   )) : <p className="no-links">No links in this stack yet</p>;
 
