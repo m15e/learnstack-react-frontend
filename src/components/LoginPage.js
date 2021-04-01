@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthNav from './AuthNav';
-// import Navigation from './Navigation';
 import { loginUser } from '../actions';
 
 const LoginPage = props => {

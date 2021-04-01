@@ -136,10 +136,13 @@ export const favoriteStack = data => dispatch => axios({
       stack_id: data.id,
     },
   },
-}).then(() => {
+}).then(response => {
+  const { data } = response;
+  console.log(data);
   dispatch({
     type: FAVE_STACK,
-    payload: parseInt(data.id, 10),
+    payload: data,
+    // payload: parseInt(data.id, 10),
   });
 }).catch(error => console.log(error));
 

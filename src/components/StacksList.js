@@ -22,7 +22,8 @@ const StacksList = props => {
       if (storedUser) {
         getFavorites(storedUser.id);
         setLoggedIn(true);
-      }
+        console.log(favorites.some(fav => fav.stack_id === 29));
+      }      
     }
   }, []);
 
@@ -49,7 +50,7 @@ const StacksList = props => {
       links={stack.links.length}
       loggedIn={loggedIn}
       handleDeleteStack={handleDeleteStack}
-      setFavorite={user ? favorites.includes(+stack.id) : false}
+      setFavorite={user ? favorites.some(fav => fav.stack_id === stack.id) : false}
       handleFavoriteStack={handleFavoriteStack}
     />
   ));
