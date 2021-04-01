@@ -11,18 +11,12 @@ const stackReducer = (state = initialState, action) => {
     case ADD_LINK:
       return {
         ...state,
-        item: {
-          ...state.item,
-          links: [...state.item.links, action.payload],
-        },
+        links: [...state.links, action.payload]        
       };
     case DELETE_LINK:
       return {
         ...state,
-        item: {
-          ...state.item,
-          links: state.item.links.filter(link => link.id !== action.payload),
-        },
+        links: state.links.filter(link => link.id !== action.payload),
       };
     default:
       return state;

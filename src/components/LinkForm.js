@@ -47,7 +47,7 @@ const LinkForm = props => {
 
 const mapStateToProps = state => ({
   user: state.user,
-  stack: state.stacks.item,
+  stack: state.stack,
 });
 
 const mapDispatchToProps = dispatch => ({
