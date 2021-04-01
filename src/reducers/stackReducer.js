@@ -1,34 +1,13 @@
 import {
-  GET_STACKS, GET_STACK, CREATE_STACK, DELETE_STACK, ADD_LINK, DELETE_LINK,
+  GET_STACK, ADD_LINK, DELETE_LINK,
 } from '../actions/types';
 
-const initialState = {
-  items: [],
-  item: {},
-};
+const initialState = {};
 
 const stackReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_STACKS:
-      return {
-        ...state,
-        items: action.payload,
-      };
+  switch (action.type) {    
     case GET_STACK:
-      return {
-        ...state,
-        item: action.payload,
-      };
-    case CREATE_STACK:
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
-    case DELETE_STACK:
-      return {
-        ...state,
-        items: state.items.filter(stack => stack.id !== action.payload),
-      };
+      return action.payload;
     case ADD_LINK:
       return {
         ...state,

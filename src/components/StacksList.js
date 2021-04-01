@@ -13,10 +13,10 @@ const StacksList = props => {
   } = props;
   const loggedInUser = localStorage.getItem('user');
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);  
 
   useEffect(() => {
-    getStacks();
+    getStacks();    
     if (user) {
       const storedUser = JSON.parse(loggedInUser);
       if (storedUser) {
@@ -40,7 +40,7 @@ const StacksList = props => {
     }
   };
 
-  const stackArray = stacks.items.map(stack => (
+  const stackArray = stacks.map(stack => (
     <Stack
       key={stack.id}
       id={stack.id}

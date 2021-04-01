@@ -128,7 +128,7 @@ StackPage.defaultProps = {
 
 const mapStateToProps = state => ({
   user: state.user,
-  stack: state.stacks.item,
+  stack: state.stack,
   favorites: state.favorites,
 });
 

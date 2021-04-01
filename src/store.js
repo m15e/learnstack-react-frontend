@@ -9,10 +9,8 @@ const initialState = {
     id: '',
   },
   favorites: [],
-  stacks: {
-    items: [],
-    item: {},
-  },
+  stacks: [],
+  stack: {},
 };
 
 const middleware = [thunk];
