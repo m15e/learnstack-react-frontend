@@ -6,8 +6,9 @@ import AuthNav from './AuthNav';
 import { loginUser } from '../actions';
 
 const LoginPage = props => {
-  const { loginUser, user } = props;
+  const { loginUser, user, error } = props;
   const history = useHistory();
+  let funky = '';
 
   const [form, setForm] = useState({});
 
@@ -35,14 +36,14 @@ const LoginPage = props => {
     if (localStorage.getItem('user')) {      
       history.push('/stacks');
     }
-  }, [user]);
+  }, [user, error]);
 
   return (
     <>
       <AuthNav />
       <section className="sign-up">
         <div className="users-form">
-          <p className="form-type set-form-type">Login</p>      
+          <p className="form-type set-form-type">{ error.message ? 'Invalid credentials, please try again' : 'Login' }</p>      
           <form onSubmit={handleSubmit}>
             <input type="checkbox" id="newUser" name="signup" />
             <div className="field">
@@ -70,6 +71,7 @@ LoginPage.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
+  error: state.error,
 });
 
 const mapDispatchToProps = dispatch => ({
