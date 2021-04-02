@@ -4,14 +4,14 @@ import userReducer from './userReducer';
 import favoritesReducer from './favoritesReducer';
 import stacksReducer from './stacksReducer';
 import stackReducer from './stackReducer';
-import errorsReducer from './errorReducer';
+import messageReducer from './messageReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   stacks: stacksReducer,
   stack: stackReducer,
   favorites: favoritesReducer,
-  error: errorsReducer,
+  message: messageReducer,
 });
 
 export default (state, action) => 

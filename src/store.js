@@ -11,7 +11,7 @@ const initialState = {
   favorites: [],
   stacks: [],
   stack: {},
-  error: '',
+  message: '',
 };
 
 const middleware = [thunk];

@@ -2,7 +2,7 @@ import { WRONG_CREDS } from '../actions/types';
 
 const initialState = '';
 
-const errorReducer = (state = initialState, action) => {
+const messageReducer = (state = initialState, action) => {
   switch (action.type) {
     case WRONG_CREDS: 
       return action.payload;    
@@ -11,4 +11,4 @@ const errorReducer = (state = initialState, action) => {
   }
 };
 
-export default errorReducer;
+export default messageReducer;

@@ -3,12 +3,13 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthNav from './AuthNav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { loginUser } from '../actions';
 
 const LoginPage = props => {
-  const { loginUser, user, error } = props;
-  const history = useHistory();
-  let funky = '';
+  const { loginUser, user, message } = props;
+  const history = useHistory();  
 
   const [form, setForm] = useState({});
 
@@ -36,14 +37,18 @@ const LoginPage = props => {
     if (localStorage.getItem('user')) {      
       history.push('/stacks');
     }
-  }, [user, error]);
+    if (message === 'Invalid username or password') {
+      toast.error(message);
+    }
+  }, [user, message]);
 
   return (
     <>
       <AuthNav />
+      <ToastContainer />
       <section className="sign-up">
         <div className="users-form">
-          <p className="form-type set-form-type">{ error.message ? 'Invalid credentials, please try again' : 'Login' }</p>      
+          <p className="form-type set-form-type">Login</p>      
           <form onSubmit={handleSubmit}>
             <input type="checkbox" id="newUser" name="signup" />
             <div className="field">
@@ -71,7 +76,7 @@ LoginPage.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
-  error: state.error,
+  message: state.message,
 });
 
 const mapDispatchToProps = dispatch => ({

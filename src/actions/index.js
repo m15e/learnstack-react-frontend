@@ -57,7 +57,7 @@ export const loginUser = user => dispatch => axios({
   dispatch({ type: SET_USER, payload: (({ favorites, ...o }) => o)(userData) });
   dispatch({ type: SET_FAVORITES, payload: userData.favorites });
   localStorage.setItem('user', JSON.stringify((({ favorites, ...o }) => o)(userData)));
-}).catch(error => dispatch({ type: WRONG_CREDS, payload: error }));
+}).catch(error => dispatch({ type: WRONG_CREDS, payload: 'Invalid username or password' }));
 
 export const setUser = user => dispatch => {
   const userData = JSON.parse(user);
