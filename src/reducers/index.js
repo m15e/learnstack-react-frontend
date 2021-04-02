@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
+import { LOGOUT } from '../actions/types';
 import userReducer from './userReducer';
 import favoritesReducer from './favoritesReducer';
 import stacksReducer from './stacksReducer';
 import stackReducer from './stackReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   user: userReducer,
   stacks: stacksReducer,
   stack: stackReducer,
   favorites: favoritesReducer,
 });
+
+export default (state, action) => 
+  rootReducer(action.type === LOGOUT ? undefined : state,action);

@@ -10,6 +10,7 @@ import {
   UNFAVE_STACK,
   DELETE_STACK,
   DELETE_LINK,
+  LOGOUT,
 } from './types';
 
 // const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
@@ -62,8 +63,8 @@ export const setUser = user => dispatch => {
   dispatch({ type: SET_USER, payload: userData });
 };
 
-export const logoutUser = () => ({
-  type: SET_USER, payload: null,
+export const clearStore = () => ({
+  type: LOGOUT, payload: null,
 });
 
 export const createStack = data => dispatch => axios({

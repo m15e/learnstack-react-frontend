@@ -10,3 +10,4 @@ export const FAVE_STACK = 'FAVE_STACK';
 export const UNFAVE_STACK = 'UNFAVE_STACK';
 export const ADD_LINK = 'ADD_LINK';
 export const DELETE_LINK = 'DELETE_LINK';
+export const LOGOUT = 'LOGOUT';

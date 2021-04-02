@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setUser, logoutUser } from '../actions';
-import UsersForm from './UsersForm';
+import { setUser, clearStore } from '../actions';
 
 const Navigation = props => {
-  const { setUser, logoutUser } = props;
+  const { setUser, clearStore } = props;
   const loggedInUser = localStorage.getItem('user');      
   const history = useHistory();
     
 
-  const logOut = () => {
-    logoutUser();
-    localStorage.clear();
+  const logOut = () => {    
+    clearStore();    
+    localStorage.clear();    
     history.push('/');
   };
 
@@ -72,8 +71,8 @@ const Navigation = props => {
 };
 
 Navigation.propTypes = {
-  setUser: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired, 
+  clearStore: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -81,8 +80,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
-  logoutUser: () => dispatch(logoutUser()),
+  setUser: user => dispatch(setUser(user)),  
+  clearStore: () => dispatch(clearStore()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
