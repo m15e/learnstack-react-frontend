@@ -25,7 +25,7 @@ const StacksList = props => {
         getFavorites(storedUser.id);
         setLoggedIn(true);
 
-        if (message === "Welcome, Login Successful") {
+        if (message === "Welcome, login successful!") {
           toast.info(message);
         };
       }      

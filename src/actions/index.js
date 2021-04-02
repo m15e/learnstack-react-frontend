@@ -66,7 +66,7 @@ export const setUser = user => dispatch => {
 };
 
 export const loginSuccess = () => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS, payload: 'Welcome, Login Successful'});
+  dispatch({ type: LOGIN_SUCCESS, payload: 'Welcome, login successful!'});
 };
 
 export const clearStore = () => ({
