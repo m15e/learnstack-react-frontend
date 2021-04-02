@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import AuthNav from './AuthNav';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { loginUser } from '../actions';
+import { loginUser, loginSuccess } from '../actions';
 
 const LoginPage = props => {
-  const { loginUser, user, message } = props;
+  const { loginUser, loginSuccess, user, message } = props;
   const history = useHistory();  
 
   const [form, setForm] = useState({});
@@ -34,7 +34,8 @@ const LoginPage = props => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('user')) {      
+    if (localStorage.getItem('user')) {   
+      loginSuccess();
       history.push('/stacks');
     }
     if (message === 'Invalid username or password') {
@@ -72,6 +73,7 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {
   loginUser: PropTypes.func.isRequired,   
+  loginSuccess: PropTypes.func.isRequired,   
 };
 
 const mapStateToProps = state => ({
@@ -81,6 +83,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUser(user)),  
+  loginSuccess: () => dispatch(loginSuccess()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

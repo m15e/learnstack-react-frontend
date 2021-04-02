@@ -12,6 +12,7 @@ import {
   DELETE_LINK,
   LOGOUT,
   WRONG_CREDS,
+  LOGIN_SUCCESS,
 } from './types';
 
 // const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
@@ -62,6 +63,10 @@ export const loginUser = user => dispatch => axios({
 export const setUser = user => dispatch => {
   const userData = JSON.parse(user);
   dispatch({ type: SET_USER, payload: userData });
+};
+
+export const loginSuccess = () => dispatch => {
+  dispatch({ type: LOGIN_SUCCESS, payload: 'Welcome, Login Successful'});
 };
 
 export const clearStore = () => ({

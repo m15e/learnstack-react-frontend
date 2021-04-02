@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Stack from './Stack';
 import StacksForm from './StacksForm';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack,
 } from '../actions';
 
 const StacksList = props => {
   const {
-    stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack,
+    stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack, message,
   } = props;
   const loggedInUser = localStorage.getItem('user');
 
@@ -22,7 +24,10 @@ const StacksList = props => {
       if (storedUser) {
         getFavorites(storedUser.id);
         setLoggedIn(true);
-        console.log(favorites.some(fav => fav.stack_id === 29));
+
+        if (message === "Welcome, Login Successful") {
+          toast.info(message);
+        };
       }      
     }
   }, []);
@@ -57,6 +62,7 @@ const StacksList = props => {
 
   return (
     <>
+      <ToastContainer />
       <div className="container is-max-desktop">
         <h3 className="title is-4 stack-list-title">What would you like to learn?</h3>
         <div className="stack-container">{stackArray}</div>
@@ -71,6 +77,7 @@ const mapStateToProps = state => ({
   stacks: state.stacks,
   user: state.user,
   favorites: state.favorites,
+  message: state.message,
 });
 
 const mapDispatchToProps = dispatch => ({
