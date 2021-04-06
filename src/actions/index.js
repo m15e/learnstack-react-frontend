@@ -12,7 +12,7 @@ import {
   DELETE_LINK,
   LOGOUT,
   WRONG_CREDS,
-  LOGIN_SUCCESS,
+  TOAST_MESSAGE,
 } from './types';
 
 // const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
@@ -65,8 +65,8 @@ export const setUser = user => dispatch => {
   dispatch({ type: SET_USER, payload: userData });
 };
 
-export const loginSuccess = () => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS, payload: 'Welcome, login successful!'});
+export const toastMessage = message => dispatch => {
+  dispatch({ type: TOAST_MESSAGE, payload: message });
 };
 
 export const clearStore = () => ({
