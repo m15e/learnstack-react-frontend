@@ -91,7 +91,7 @@ const mapDispatchToProps = dispatch => ({
 
 StacksList.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     token: PropTypes.string.isRequired,
   }).isRequired,
   stacks: PropTypes.arrayOf(PropTypes.object).isRequired,

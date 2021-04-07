@@ -105,6 +105,11 @@ StackPage.defaultProps = {
     user_id: 1,
     links: [],
   },
+  user: {
+    username: '',
+    id: '',
+    token: '',
+  },
 };
 
 StackPage.propTypes = {
@@ -114,13 +119,14 @@ StackPage.propTypes = {
   favoriteStack: PropTypes.func.isRequired,
   unFavoriteStack: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    token: PropTypes.string.isRequired,
-  }).isRequired,
+    username: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    token: PropTypes.string,
+  }),
   stack: PropTypes.shape({
     title: PropTypes.string,
-    user_id: PropTypes.number.isRequired,
-    tags: PropTypes.string.isRequired,
+    user_id: PropTypes.number,
+    tags: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.object),
   }),
   favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
