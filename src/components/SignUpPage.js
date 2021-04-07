@@ -3,10 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthNav from './AuthNav';
-import { createUser } from '../actions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { createUser, toastMessage } from '../actions';
 
 const SignUpPage = props => {
-  const { createUser, user } = props;
+  const { createUser, user, message, toastMessage } = props;
   const history = useHistory();
 
   const [form, setForm] = useState({});
@@ -32,14 +34,19 @@ const SignUpPage = props => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('user')) {      
+    if (localStorage.getItem('user')) {
+      toastMessage('Welcome, signup successful!');
       history.push('/stacks');
     }
-  }, [user]);
+    if (message === 'Error username already exists or invalid') {
+      toast.error(message);
+    }
+  }, [user, message]);
 
   return (
     <>
       <AuthNav />
+      <ToastContainer />
       <section className="sign-up">
         <div className="container">
             <div className="users-form">
@@ -67,15 +74,18 @@ const SignUpPage = props => {
 };
 
 SignUpPage.propTypes = {
-  createUser: PropTypes.func.isRequired,   
+  createUser: PropTypes.func.isRequired,
+  toastMessage: PropTypes.func.isRequired,  
 };
 
 const mapStateToProps = state => ({
   user: state.user,
+  message: state.message
 });
 
 const mapDispatchToProps = dispatch => ({
   createUser: user => dispatch(createUser(user)),  
+  toastMessage: message => dispatch(toastMessage(message)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

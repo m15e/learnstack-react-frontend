@@ -32,8 +32,7 @@ const Stack = props => {
   };
 
   return (
-    <div className="stack tile box">
-      <p></p>
+    <div className="stack tile box">      
       <div className="stack-bg" style={divBg}>
         <div className="favorite-icon">
           {setFavorite ? <GoFlame className="flame-icon flame-on" /> : <GoFlame className="flame-icon" />}

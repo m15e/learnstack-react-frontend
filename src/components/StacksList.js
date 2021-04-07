@@ -25,12 +25,12 @@ const StacksList = props => {
         getFavorites(storedUser.id);
         setLoggedIn(true);
 
-        if (message === "Welcome, login successful!") {
+        if (message === "Welcome, login successful!" || message === "Welcome, signup successful!") {
           toast.info(message);
           toastMessage('');
-        };
-      }      
-    }
+        };      
+      };      
+    };
   }, []);
 
   const handleDeleteStack = id => {

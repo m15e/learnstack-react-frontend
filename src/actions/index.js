@@ -19,7 +19,7 @@ import {
 // const STACKS_API = 'https://learnstack-api.herokuapp.com/api/v1/stacks';
 // const LINKS_API = 'https://learnstack-api.herokuapp.com/api/v1/links';
 // const AUTH_API = 'https://learnstack-api.herokuapp.com/api/v1/authenticate';
-// const FAVES_API = 'https://learnstack-api.herokuapp.com/api/v1/favorite_stacks';
+// const FAVES_API = 'https://learnstack-api.herokuapp.com/api/v1/favorites';
 
 const USERS_API = 'http://localhost:3000/api/v1/users';
 const STACKS_API = 'http://localhost:3000/api/v1/stacks';
@@ -41,7 +41,7 @@ export const createUser = user => dispatch => axios({
 
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData));
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: WRONG_CREDS, payload: 'Error username already exists or invalid' }));
 
 export const loginUser = user => dispatch => axios({
   method: 'post',
@@ -50,14 +50,13 @@ export const loginUser = user => dispatch => axios({
 }).then(response => {
   const { data } = response;
   const { token } = data;
-  const { id } = data;
-  const { favorites } = data;
+  const { id } = data;  
   const userData = {
-    username: user.username, token, id, favorites,
+    username: user.username, token, id
   };
-  dispatch({ type: SET_USER, payload: (({ favorites, ...o }) => o)(userData) });
-  dispatch({ type: SET_FAVORITES, payload: userData.favorites });
-  localStorage.setItem('user', JSON.stringify((({ favorites, ...o }) => o)(userData)));
+  
+  dispatch({ type: SET_USER, payload: userData });  
+  localStorage.setItem('user', JSON.stringify(userData));
 }).catch(error => dispatch({ type: WRONG_CREDS, payload: 'Invalid username or password' }));
 
 export const setUser = user => dispatch => {
@@ -127,8 +126,7 @@ export const getFavorites = id => dispatch => axios({
   url: `${FAVES_API}?user_id=${id}`,
 }).then(response => {
   const { data } = response;
-  dispatch({ type: SET_FAVORITES, payload: data });
-  //TEMP localStorage.setItem('favorites', JSON.stringify(data));
+  dispatch({ type: SET_FAVORITES, payload: data });  
 });
 
 export const favoriteStack = data => dispatch => axios({
@@ -144,12 +142,10 @@ export const favoriteStack = data => dispatch => axios({
     },
   },
 }).then(response => {
-  const { data } = response;
-  console.log(data);
+  const { data } = response;  
   dispatch({
     type: FAVE_STACK,
-    payload: data,
-    // payload: parseInt(data.id, 10),
+    payload: data,    
   });
 }).catch(error => console.log(error));
 

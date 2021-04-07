@@ -39,8 +39,7 @@ const StackPage = props => {
     getStack(stackId);
     if (user) {
       getFavorites(user.id);
-      setIsFavorite(favorites.some(f => f.stack_id === stackId));   
-      console.log(isStackOwner);   
+      setIsFavorite(favorites.some(f => f.stack_id === stackId));         
     }
   }, [getStack, setIsFavorite, user]);
 

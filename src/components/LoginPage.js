@@ -73,7 +73,7 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {
   loginUser: PropTypes.func.isRequired,   
-  toastMessage: PropTypes.func.isRequired,   
+  toastMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
