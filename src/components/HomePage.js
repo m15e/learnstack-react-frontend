@@ -1,8 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Navigation from './Navigation';
 
-const HomePage = () => (
+const HomePage = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      history.push('/stacks');
+    };
+  }, []);
+
+  return (
   <section className="hero is-large">
     <div className="gradient-bg" />
     <div className="hero-head">
@@ -21,6 +30,7 @@ const HomePage = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default HomePage;
