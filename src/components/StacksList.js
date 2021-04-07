@@ -6,12 +6,12 @@ import StacksForm from './StacksForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack,
+  deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack, toastMessage
 } from '../actions';
 
 const StacksList = props => {
   const {
-    stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack, message,
+    stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack, message, toastMessage
   } = props;
   const loggedInUser = localStorage.getItem('user');
 
@@ -27,6 +27,7 @@ const StacksList = props => {
 
         if (message === "Welcome, login successful!") {
           toast.info(message);
+          toastMessage('');
         };
       }      
     }
@@ -49,11 +50,12 @@ const StacksList = props => {
   const stackArray = stacks.map(stack => (
     <Stack
       key={stack.id}
+      userId={user.id}
       id={stack.id}
       title={stack.title}
       tags={stack.tags}
       links={stack.links.length}
-      loggedIn={loggedIn}
+      stackOwner={user.id === stack.user_id}
       handleDeleteStack={handleDeleteStack}
       setFavorite={user ? favorites.some(fav => fav.stack_id === stack.id) : false}
       handleFavoriteStack={handleFavoriteStack}
@@ -86,6 +88,7 @@ const mapDispatchToProps = dispatch => ({
   getFavorites: data => dispatch(getFavorites(data)),
   favoriteStack: data => dispatch(favoriteStack(data)),
   unFavoriteStack: data => dispatch(unFavoriteStack(data)),
+  toastMessage: message => dispatch(toastMessage(message)),
 });
 
 // StacksList.propTypes = {

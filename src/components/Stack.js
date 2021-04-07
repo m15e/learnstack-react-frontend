@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 const Stack = props => {
   const {
-    title, tags, id, links, handleDeleteStack, handleFavoriteStack, setFavorite, loggedIn,
+    title, tags, id, links, handleDeleteStack, handleFavoriteStack, setFavorite, stackOwner,
   } = props;
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className="tag is-rounded stack-tag">{tag}</span>));
 
   const getRandomInt = (min, max) => Math.floor(Math.random()
-                                     * (Math.floor(max) - Math.ceil(min)) + Math.ceil(min));
+                                     * (Math.floor(max) - Math.ceil(min)) + Math.ceil(min));  
 
   const favoriteButton = setFavorite
     ? (
@@ -35,11 +35,11 @@ const Stack = props => {
     <div className="stack tile box">
       <p></p>
       <div className="stack-bg" style={divBg}>
-        {loggedIn && (
+        <div className="favorite-icon">
+          {setFavorite ? <GoFlame className="flame-icon flame-on" /> : <GoFlame className="flame-icon" />}
+        </div>
+        {stackOwner && (
           <>
-            <div className="favorite-icon">
-              {setFavorite ? <GoFlame className="flame-icon flame-on" /> : <GoFlame className="flame-icon" />}
-            </div>
             <div className="delete-btn">
               <button type="button" aria-label="Close" className="delete-stack" onClick={() => handleDeleteStack(id)}><GoX /></button>
             </div>
@@ -70,7 +70,7 @@ const Stack = props => {
           </div>
         </div>
         <div className="stack-actions">
-          {loggedIn && favoriteButton}
+          {favoriteButton}
           <Link to={`/stack/${id}`} className="button is-rounded orange-white is-small stack-link">View Collection</Link>
         </div>
       </div>
@@ -86,7 +86,7 @@ Stack.propTypes = {
   handleDeleteStack: PropTypes.func.isRequired,
   handleFavoriteStack: PropTypes.func.isRequired,
   setFavorite: PropTypes.bool.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
+  stackOwner: PropTypes.bool.isRequired,
 };
 
 export default Stack;
