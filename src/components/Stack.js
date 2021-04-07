@@ -10,7 +10,7 @@ const Stack = props => {
   const tagArray = tags.split(' ').map(tag => (<span key={tag} className="tag is-rounded stack-tag">{tag}</span>));
 
   const getRandomInt = (min, max) => Math.floor(Math.random()
-                                     * (Math.floor(max) - Math.ceil(min)) + Math.ceil(min));  
+                                     * (Math.floor(max) - Math.ceil(min)) + Math.ceil(min));
 
   const favoriteButton = setFavorite
     ? (
@@ -25,14 +25,14 @@ const Stack = props => {
       </button>
     );
 
-  const bgURL = `url('https://source.unsplash.com/1024x768/?${tags.split(' ')[0]}')`
+  const bgURL = `url('https://source.unsplash.com/1024x768/?${tags.split(' ')[0]}')`;
 
-  const divBg = {    
+  const divBg = {
     backgroundImage: bgURL,
   };
 
   return (
-    <div className="stack tile box">      
+    <div className="stack tile box">
       <div className="stack-bg" style={divBg}>
         <div className="favorite-icon">
           {setFavorite ? <GoFlame className="flame-icon flame-on" /> : <GoFlame className="flame-icon" />}

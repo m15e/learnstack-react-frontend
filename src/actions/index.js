@@ -41,7 +41,7 @@ export const createUser = user => dispatch => axios({
 
   dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData));
-}).catch(error => dispatch({ type: WRONG_CREDS, payload: 'Error username already exists or invalid' }));
+}).catch(() => dispatch({ type: WRONG_CREDS, payload: 'Error username already exists or invalid' }));
 
 export const loginUser = user => dispatch => axios({
   method: 'post',
@@ -50,14 +50,14 @@ export const loginUser = user => dispatch => axios({
 }).then(response => {
   const { data } = response;
   const { token } = data;
-  const { id } = data;  
+  const { id } = data;
   const userData = {
-    username: user.username, token, id
+    username: user.username, token, id,
   };
-  
-  dispatch({ type: SET_USER, payload: userData });  
+
+  dispatch({ type: SET_USER, payload: userData });
   localStorage.setItem('user', JSON.stringify(userData));
-}).catch(error => dispatch({ type: WRONG_CREDS, payload: 'Invalid username or password' }));
+}).catch(() => dispatch({ type: WRONG_CREDS, payload: 'Invalid username or password' }));
 
 export const setUser = user => dispatch => {
   const userData = JSON.parse(user);
@@ -84,7 +84,7 @@ export const createStack = data => dispatch => axios({
   },
 }).then(response => {
   dispatch({ type: CREATE_STACK, payload: response.data });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const deleteStack = data => dispatch => axios({
   method: 'delete',
@@ -98,7 +98,7 @@ export const deleteStack = data => dispatch => axios({
     type: DELETE_STACK,
     payload: data.id,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const getStacks = () => dispatch => axios({
   method: 'get',
@@ -108,7 +108,7 @@ export const getStacks = () => dispatch => axios({
     type: GET_STACKS,
     payload: response.data,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const getStack = data => dispatch => axios({
   method: 'get',
@@ -119,14 +119,14 @@ export const getStack = data => dispatch => axios({
     type: GET_STACK,
     payload: stack,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const getFavorites = id => dispatch => axios({
   method: 'get',
   url: `${FAVES_API}?user_id=${id}`,
 }).then(response => {
   const { data } = response;
-  dispatch({ type: SET_FAVORITES, payload: data });  
+  dispatch({ type: SET_FAVORITES, payload: data });
 });
 
 export const favoriteStack = data => dispatch => axios({
@@ -142,12 +142,12 @@ export const favoriteStack = data => dispatch => axios({
     },
   },
 }).then(response => {
-  const { data } = response;  
+  const { data } = response;
   dispatch({
     type: FAVE_STACK,
-    payload: data,    
+    payload: data,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const unFavoriteStack = data => dispatch => axios({
   method: 'delete',
@@ -161,7 +161,7 @@ export const unFavoriteStack = data => dispatch => axios({
     type: UNFAVE_STACK,
     payload: data.id,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const createLink = data => dispatch => axios({
   method: 'post',
@@ -178,7 +178,7 @@ export const createLink = data => dispatch => axios({
     type: ADD_LINK,
     payload: response.data,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));
 
 export const deleteLink = data => dispatch => axios({
   method: 'delete',
@@ -192,4 +192,4 @@ export const deleteLink = data => dispatch => axios({
     type: DELETE_LINK,
     payload: data.id,
   });
-}).catch(error => console.log(error));
+}).catch(error => dispatch({ type: TOAST_MESSAGE, payload: error }));

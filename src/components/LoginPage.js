@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AuthNav from './AuthNav';
 import { ToastContainer, toast } from 'react-toastify';
+import AuthNav from './AuthNav';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUser, toastMessage } from '../actions';
 
 const LoginPage = props => {
-  const { loginUser, toastMessage, user, message } = props;
-  const history = useHistory();  
+  const {
+    loginUser, toastMessage, message, user,
+  } = props;
+  const history = useHistory();
 
   const [form, setForm] = useState({});
 
   const onChange = e => {
-      setForm({
-        ...form,
-        [e.target.name]: e.target.value,
-      });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = e => {
@@ -34,7 +36,7 @@ const LoginPage = props => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('user')) {   
+    if (localStorage.getItem('user')) {
       toastMessage('Welcome, login successful!');
       history.push('/stacks');
     }
@@ -49,7 +51,7 @@ const LoginPage = props => {
       <ToastContainer />
       <section className="sign-up">
         <div className="users-form">
-          <p className="form-type set-form-type">Login</p>      
+          <p className="form-type set-form-type">Login</p>
           <form onSubmit={handleSubmit}>
             <input type="checkbox" id="newUser" name="signup" />
             <div className="field">
@@ -64,16 +66,31 @@ const LoginPage = props => {
             </div>
             <button className="button is-rounded orange-white set-form-type" type="submit">Login</button>
           </form>
-          <Link to='/signup' className='change-auth'>Sign Up Instead</Link> 
+          <Link to="/signup" className="change-auth">Sign Up Instead</Link>
         </div>
       </section>
     </>
-    );
+  );
+};
+
+LoginPage.defaultProps = {
+  user: {
+    username: '',
+    token: '',
+    id: 1,
+  },
+  message: '',
 };
 
 LoginPage.propTypes = {
-  loginUser: PropTypes.func.isRequired,   
+  loginUser: PropTypes.func.isRequired,
   toastMessage: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    id: PropTypes.number,
+    token: PropTypes.string,
+  }),
+  message: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -82,7 +99,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loginUser: user => dispatch(loginUser(user)),  
+  loginUser: user => dispatch(loginUser(user)),
   toastMessage: message => dispatch(toastMessage(message)),
 });
 

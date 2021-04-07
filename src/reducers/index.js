@@ -14,5 +14,4 @@ const rootReducer = combineReducers({
   message: messageReducer,
 });
 
-export default (state, action) => 
-  rootReducer(action.type === LOGOUT ? undefined : state,action);
+export default (state, action) => rootReducer(action.type === LOGOUT ? undefined : state, action);

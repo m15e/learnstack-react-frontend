@@ -6,13 +6,12 @@ import { setUser, clearStore } from '../actions';
 
 const Navigation = props => {
   const { setUser, clearStore } = props;
-  const loggedInUser = localStorage.getItem('user');      
+  const loggedInUser = localStorage.getItem('user');
   const history = useHistory();
-    
 
-  const logOut = () => {    
-    clearStore();    
-    localStorage.clear();    
+  const logOut = () => {
+    clearStore();
+    localStorage.clear();
     history.push('/');
   };
 
@@ -45,13 +44,13 @@ const Navigation = props => {
                   <span className="navbar-item">
                     <Link to="/login" className="button is-rounded orange-white">
                       <span>Login</span>
-                    </Link>                    
+                    </Link>
                   </span>
                   <span className="navbar-item">
                     <Link to="/signup" className="button is-rounded orange-white">
                       <span>Sign Up</span>
-                    </Link>                    
-                  </span>                
+                    </Link>
+                  </span>
                 </>
                 )}
               {loggedInUser
@@ -62,16 +61,16 @@ const Navigation = props => {
                   </button>
                 </span>
                 )}
-            </div>          
+            </div>
           </div>
         </div>
-      </nav>      
+      </nav>
     </>
   );
 };
 
 Navigation.propTypes = {
-  setUser: PropTypes.func.isRequired, 
+  setUser: PropTypes.func.isRequired,
   clearStore: PropTypes.func.isRequired,
 };
 
@@ -80,7 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),  
+  setUser: user => dispatch(setUser(user)),
   clearStore: () => dispatch(clearStore()),
 });
 

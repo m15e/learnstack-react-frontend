@@ -1,36 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
 import Stack from './Stack';
 import StacksForm from './StacksForm';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack, toastMessage
+  deleteStack, getStacks, getFavorites, favoriteStack, unFavoriteStack, toastMessage,
 } from '../actions';
 
 const StacksList = props => {
   const {
-    stacks, getStacks, user, deleteStack, favorites, getFavorites, favoriteStack, unFavoriteStack, message, toastMessage
+    stacks, getStacks, user, deleteStack, favorites, getFavorites,
+    favoriteStack, unFavoriteStack, message, toastMessage,
   } = props;
   const loggedInUser = localStorage.getItem('user');
 
-  const [loggedIn, setLoggedIn] = useState(false);  
-
   useEffect(() => {
-    getStacks();    
+    getStacks();
     if (user) {
       const storedUser = JSON.parse(loggedInUser);
       if (storedUser) {
         getFavorites(storedUser.id);
-        setLoggedIn(true);
 
-        if (message === "Welcome, login successful!" || message === "Welcome, signup successful!") {
+        if (message === 'Welcome, login successful!' || message === 'Welcome, signup successful!') {
           toast.info(message);
           toastMessage('');
-        };      
-      };      
-    };
+        }
+      }
+    }
   }, []);
 
   const handleDeleteStack = id => {
@@ -91,20 +89,20 @@ const mapDispatchToProps = dispatch => ({
   toastMessage: message => dispatch(toastMessage(message)),
 });
 
-// StacksList.propTypes = {
-//   user: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     token: PropTypes.string.isRequired,
-//   }).isRequired,
-//   stacks: PropTypes.shape({
-//     items: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   }).isRequired,
-//   favorites: PropTypes.arrayOf(PropTypes.number).isRequired,
-//   getStacks: PropTypes.func.isRequired,
-//   deleteStack: PropTypes.func.isRequired,
-//   getFavorites: PropTypes.func.isRequired,
-//   favoriteStack: PropTypes.func.isRequired,
-//   unFavoriteStack: PropTypes.func.isRequired,
-// };
+StacksList.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired,
+  }).isRequired,
+  stacks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getStacks: PropTypes.func.isRequired,
+  deleteStack: PropTypes.func.isRequired,
+  getFavorites: PropTypes.func.isRequired,
+  favoriteStack: PropTypes.func.isRequired,
+  unFavoriteStack: PropTypes.func.isRequired,
+  toastMessage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StacksList);
