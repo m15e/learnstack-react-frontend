@@ -15,17 +15,11 @@ import {
   TOAST_MESSAGE,
 } from './types';
 
-// const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
-// const STACKS_API = 'https://learnstack-api.herokuapp.com/api/v1/stacks';
-// const LINKS_API = 'https://learnstack-api.herokuapp.com/api/v1/links';
-// const AUTH_API = 'https://learnstack-api.herokuapp.com/api/v1/authenticate';
-// const FAVES_API = 'https://learnstack-api.herokuapp.com/api/v1/favorites';
-
-const USERS_API = 'http://localhost:3000/api/v1/users';
-const STACKS_API = 'http://localhost:3000/api/v1/stacks';
-const LINKS_API = 'http://localhost:3000/api/v1/links';
-const AUTH_API = 'http://localhost:3000/api/v1/authenticate';
-const FAVES_API = 'http://localhost:3000/api/v1/favorites';
+const USERS_API = 'https://learnstack-api.herokuapp.com/api/v1/users';
+const STACKS_API = 'https://learnstack-api.herokuapp.com/api/v1/stacks';
+const LINKS_API = 'https://learnstack-api.herokuapp.com/api/v1/links';
+const AUTH_API = 'https://learnstack-api.herokuapp.com/api/v1/authenticate';
+const FAVES_API = 'https://learnstack-api.herokuapp.com/api/v1/favorites';
 
 export const createUser = user => dispatch => axios({
   method: 'post',
