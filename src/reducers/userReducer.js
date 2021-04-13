@@ -6,7 +6,6 @@ const initialState = {
   username: '',
   token: '',
   id: '',
-  favorites: [],
 };
 
 const userReducer = (state = initialState, action) => {

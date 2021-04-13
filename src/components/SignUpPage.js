@@ -87,7 +87,11 @@ SignUpPage.defaultProps = {
 SignUpPage.propTypes = {
   createUser: PropTypes.func.isRequired,
   toastMessage: PropTypes.func.isRequired,
-  user: PropTypes.string,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    token: PropTypes.string,
+  }),
   message: PropTypes.string,
 };
 

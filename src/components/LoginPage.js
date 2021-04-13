@@ -87,7 +87,7 @@ LoginPage.propTypes = {
   toastMessage: PropTypes.func.isRequired,
   user: PropTypes.shape({
     username: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     token: PropTypes.string,
   }),
   message: PropTypes.string,
